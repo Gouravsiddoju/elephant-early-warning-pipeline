@@ -1,8 +1,7 @@
 # .gitignore for Elephant Early Warning Pipeline
 
-# Large data files — download separately (see README)
-botswana-260310-free.shp/
-doi_10_5061_dryad_dr7sqv9v9__v20200116/
+# Python cache
+__pycache__/
 *.py[cod]
 *.pyo
 .Python
