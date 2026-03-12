@@ -1,0 +1,13 @@
+pandas
+numpy
+geopandas
+shapely
+scikit-learn
+earthengine-api
+geemap
+matplotlib
+seaborn
+folium
+joblib
+scipy
+tqdm

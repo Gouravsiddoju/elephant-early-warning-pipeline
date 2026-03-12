@@ -1,0 +1,33 @@
+# .gitignore for Elephant Early Warning Pipeline
+
+# Large data files — download separately (see README)
+botswana-260310-free.shp/
+doi_10_5061_dryad_dr7sqv9v9__v20200116/
+*.py[cod]
+*.pyo
+.Python
+*.egg-info/
+
+# Large generated files
+feature_matrix.csv
+grid_centroids.csv
+gee_cache.pkl
+
+# Trained model artifacts (too large for git)
+elephant_model.pkl
+scaler.pkl
+label_encoder.pkl
+feature_names.pkl
+
+# Output files
+alert_map.html
+alert_output.json
+evaluation_report.png
+
+# VS Code / IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
