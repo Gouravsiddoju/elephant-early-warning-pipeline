@@ -40,7 +40,8 @@ def generate_scenario(name: str):
     lstm_model.eval()
     
     grid_gdf = rebuild_grid()
-    osm_villages_gdf = gpd.read_file(r'c:\Users\Admin\Desktop\elephant-early-warning-pipeline\botswana-260310-free.shp\gis_osm_places_free_1.shp')
+    BASE = os.path.dirname(os.path.abspath(__file__))
+    osm_villages_gdf = gpd.read_file(os.path.join(BASE, 'botswana-260310-free.shp', 'gis_osm_places_free_1.shp'))
 
     if name == 'conflict':
         print(f"[{datetime.now().isoformat()}] Generating CONFLICT Scenario (Heading towards Maun)...")
@@ -128,9 +129,15 @@ def generate_scenario(name: str):
         raise ValueError(f"Unknown scenario: {name}")
 
     if name == 'test_data':
-        # Rely on the actual model
-        demo_input_seq = elephant_history.tail(9).to_dict('records')
-        demo_input_seq.append(demo_input)
+        # Build sequence from raw (unscaled) feature matrix data.
+        # predictor.py handles scaling internally — do NOT pre-scale here.
+        features = joblib.load('feature_names.pkl')
+        exclude_cols = ['elephant_id', 'Date_Time', 'from_grid', 'to_grid', 'target', 'grid_centroid_lon', 'grid_centroid_lat']
+        raw_cols = [c for c in elephant_history.columns if c not in exclude_cols]
+        demo_input_seq = elephant_history.tail(9)[raw_cols].to_dict('records')
+        # Add current row
+        current_row = {k: v for k, v in demo_input.items() if k not in exclude_cols}
+        demo_input_seq.append(current_row)
         predictions = predict_next_grid(lstm_model, scaler, label_encoder, demo_input_seq)
     # Mock predictions based on scenario geography to guarantee demo visual success
     elif name == 'conflict':

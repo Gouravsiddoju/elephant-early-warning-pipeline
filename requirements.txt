@@ -11,3 +11,5 @@ folium
 joblib
 scipy
 tqdm
+torch>=2.1.0
+pyproj

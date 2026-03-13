@@ -133,7 +133,7 @@ def prepare_train_test(df: pd.DataFrame):
 
 def train_lstm(X_train, y_train, input_dim, output_dim, epochs=10, batch_size=256):
     """
-    Train the LSTM Classifier
+    Train the LSTM Classifier with LR scheduler and early stopping.
     """
     print(f"[{datetime.now().isoformat()}] Training PyTorch LSTM Classifier...")
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -143,11 +143,18 @@ def train_lstm(X_train, y_train, input_dim, output_dim, epochs=10, batch_size=25
     
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5, verbose=True)
     
     X_tensor = torch.tensor(X_train, dtype=torch.float32)
     y_tensor = torch.tensor(y_train, dtype=torch.long)
     dataset = TensorDataset(X_tensor, y_tensor)
     loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
+    
+    # Early stopping setup
+    best_loss = float('inf')
+    patience = 10
+    patience_counter = 0
+    best_state = None
     
     model.train()
     for epoch in range(epochs):
@@ -162,17 +169,33 @@ def train_lstm(X_train, y_train, input_dim, output_dim, epochs=10, batch_size=25
             optimizer.step()
             total_loss += loss.item()
             
-        print(f"[{datetime.now().isoformat()}] Epoch {epoch+1}/{epochs}, Loss: {total_loss/len(loader):.4f}")
+        avg_loss = total_loss / len(loader)
+        current_lr = optimizer.param_groups[0]['lr']
+        print(f"[{datetime.now().isoformat()}] Epoch {epoch+1}/{epochs}, Loss: {avg_loss:.4f}, LR: {current_lr:.6f}")
         
-    print(f"[{datetime.now().isoformat()}] Training complete.")
+        # LR scheduler step
+        scheduler.step(avg_loss)
+        
+        # Early stopping check
+        if avg_loss < best_loss:
+            best_loss = avg_loss
+            patience_counter = 0
+            best_state = model.state_dict().copy()
+        else:
+            patience_counter += 1
+            if patience_counter >= patience:
+                print(f"[{datetime.now().isoformat()}] Early stopping at epoch {epoch+1} (no improvement for {patience} epochs)")
+                break
+        
+    # Restore best weights
+    if best_state is not None:
+        model.load_state_dict(best_state)
     
-    # Save model weights instead of joblib
+    print(f"[{datetime.now().isoformat()}] Training complete. Best loss: {best_loss:.4f}")
+    
+    # Save model weights
     torch.save(model.state_dict(), 'elephant_lstm.pt')
     print(f"[{datetime.now().isoformat()}] Saved model weights to elephant_lstm.pt")
-    
-    # Also save a dummy wrapper so standard joblib calls don't crash without warnings 
-    # (Though we'll update predictor.py so it shouldn't matter)
-    joblib.dump(model, 'elephant_model.pkl')
     
     return model
 
@@ -278,5 +301,5 @@ if __name__ == "__main__":
     num_classes = len(np.unique(np.concatenate((y_train, y_test))))
     print(f"Number of classes: {num_classes}")
     
-    model = train_lstm(X_train, y_train, input_dim=X_train.shape[2], output_dim=num_classes, epochs=3, batch_size=256)
+    model = train_lstm(X_train, y_train, input_dim=X_train.shape[2], output_dim=num_classes, epochs=100, batch_size=256)
     metrics = evaluate_model(model, X_test, y_test)

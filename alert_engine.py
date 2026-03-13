@@ -537,7 +537,7 @@ def plot_prediction_map(current_grid, predicted_grids, villages_df, grid_gdf=Non
     </style>
     <div class="ew-panel">
       <div class="ew-title">🐘 Early Warning System</div>
-      <div class="ew-ts">Generated: {now_ts} IST &nbsp;|&nbsp; Model: Random Forest</div>
+      <div class="ew-ts">Generated: {now_ts} CAT &nbsp;|&nbsp; Model: LSTM</div>
 
       <div class="ew-section-title">📍 Current State</div>
       <div class="ew-stat"><span class="label">Elephant ID</span><span class="val">E-1</span></div>

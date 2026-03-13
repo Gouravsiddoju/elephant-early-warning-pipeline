@@ -62,7 +62,9 @@ def extract_osm_features(osm_shapefile_path: str, grid_gdf: gpd.GeoDataFrame) ->
     grid_gdf['village_distance_m'] = grid_gdf['village_distance_m'].fillna(10000.0)
     
     # 2. road_density and others
-    grid_area_km2 = (500 * 500) / 1e6
+    # Compute actual cell area from grid geometry
+    cell_area_m2 = grid_gdf.geometry.iloc[0].area  # All cells are same size
+    grid_area_km2 = cell_area_m2 / 1e6
     grid_gdf['road_density'] = 0.0
     grid_gdf['cropland_pct'] = 0.0
     grid_gdf['has_powerline'] = 0
@@ -81,7 +83,7 @@ def extract_osm_features(osm_shapefile_path: str, grid_gdf: gpd.GeoDataFrame) ->
         intersections = gpd.overlay(grid_gdf[['grid_id', 'geometry']], cropland[['geometry']], how='intersection')
         intersections['crop_area_sqm'] = intersections.geometry.area
         crop_sums = intersections.groupby('grid_id')['crop_area_sqm'].sum().reset_index()
-        crop_sums['cropland_pct'] = crop_sums['crop_area_sqm'] / (500 * 500)
+        crop_sums['cropland_pct'] = crop_sums['crop_area_sqm'] / cell_area_m2
         grid_gdf = grid_gdf.drop(columns=['cropland_pct'], errors='ignore').merge(crop_sums[['grid_id', 'cropland_pct']], on='grid_id', how='left')
         grid_gdf['cropland_pct'] = grid_gdf['cropland_pct'].fillna(0.0)
         

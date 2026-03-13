@@ -53,8 +53,8 @@ def predict_next_grid(model, scaler, label_encoder, current_input_seq: list, fea
     # Pad to SEQ_LEN if we have fewer elements in the sequence
     if len(input_df) < SEQ_LEN:
         pad_len = SEQ_LEN - len(input_df)
-        # Repeat the first row pad_len times
-        pad_df = pd.DataFrame([input_df.iloc[0].to_dict()] * pad_len)
+        # Pad with zeros (neutral) instead of duplicating real data
+        pad_df = pd.DataFrame(np.zeros((pad_len, len(input_df.columns))), columns=input_df.columns)
         input_df = pd.concat([pad_df, input_df], ignore_index=True)
     elif len(input_df) > SEQ_LEN:
         input_df = input_df.tail(SEQ_LEN)
