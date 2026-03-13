@@ -12,7 +12,12 @@ from datetime import datetime
 from predictor import predict_next_grid
 from alert_engine import identify_at_risk_villages, generate_alert_report, plot_prediction_map
 from grid_builder import build_grid
-from model_trainer import ElephantLSTM
+try:
+    from improved_trainer import ElephantLSTMv2
+    USE_V2 = True
+except ImportError:
+    from model_trainer import ElephantLSTM
+    USE_V2 = False
 
 def rebuild_grid():
     STUDY_LON_MIN, STUDY_LON_MAX = 23.0, 28.0
@@ -26,16 +31,23 @@ def rebuild_grid():
     return build_grid(bounds_utm, cell_size_m=5000)
 
 def generate_scenario(name: str):
-    print(f"[{datetime.now().isoformat()}] Loading artifacts...")
-    scaler        = joblib.load('scaler.pkl')
-    label_encoder = joblib.load('label_encoder.pkl')
-    
-    # Load PyTorch LSTM Model
-    features = joblib.load('feature_names.pkl')
-    num_classes = len(label_encoder.classes_)
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    lstm_model = ElephantLSTM(input_dim=len(features), hidden_dim=128, num_layers=2, output_dim=num_classes)
-    lstm_model.load_state_dict(torch.load('elephant_lstm.pt', map_location=device))
+    # Load model — prefer v2 regression model, fallback to v1 classifier
+    if USE_V2 and os.path.exists('elephant_lstm_v2.pt'):
+        print(f"[{datetime.now().isoformat()}] Loading ElephantLSTMv2 regression model...")
+        scaler        = joblib.load('scaler_v2.pkl')
+        label_encoder = None
+        features      = joblib.load('feature_names_v2.pkl')
+        lstm_model    = ElephantLSTMv2(input_dim=len(features))
+        lstm_model.load_state_dict(torch.load('elephant_lstm_v2.pt', map_location=device))
+    else:
+        print(f"[{datetime.now().isoformat()}] Loading ElephantLSTM v1 classifier...")
+        scaler        = joblib.load('scaler.pkl')
+        label_encoder = joblib.load('label_encoder.pkl')
+        features      = joblib.load('feature_names.pkl')
+        num_classes   = len(label_encoder.classes_)
+        lstm_model    = ElephantLSTM(input_dim=len(features), hidden_dim=128, num_layers=2, output_dim=num_classes)
+        lstm_model.load_state_dict(torch.load('elephant_lstm.pt', map_location=device))
     lstm_model.to(device)
     lstm_model.eval()
     

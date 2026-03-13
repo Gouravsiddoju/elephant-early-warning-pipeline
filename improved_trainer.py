@@ -124,26 +124,36 @@ def haversine_km(lat1, lon1, lat2, lon2):
     return R * 2 * torch.asin(c)
 
 
-class HaversineRegressionLoss(nn.Module):
+class SpatialMSELoss(nn.Module):
     """
-    MSE on (delta_lat, delta_lon) + Haversine regulariser on absolute position.
-    alpha controls weighting: loss = MSE + alpha * mean_km_error
+    Backprop on MSE of (delta_lat, delta_lon) only — numerically stable.
+    Haversine is computed separately for monitoring but NOT in the gradient path.
     """
-    def __init__(self, alpha=0.1):
+    def __init__(self):
         super().__init__()
-        self.alpha = alpha
-        self.mse   = nn.MSELoss()
+        self.mse = nn.MSELoss()
 
     def forward(self, pred_delta, true_delta, cur_lat, cur_lon):
+        # Stable MSE loss for backprop
         mse_loss = self.mse(pred_delta, true_delta)
 
-        pred_lat = cur_lat + pred_delta[:, 0]
-        pred_lon = cur_lon + pred_delta[:, 1]
-        true_lat = cur_lat + true_delta[:, 0]
-        true_lon = cur_lon + true_delta[:, 1]
+        # Haversine only for monitoring (no_grad)
+        with torch.no_grad():
+            pred_lat = cur_lat + pred_delta[:, 0]
+            pred_lon = cur_lon + pred_delta[:, 1]
+            true_lat = cur_lat + true_delta[:, 0]
+            true_lon = cur_lon + true_delta[:, 1]
+            dlat = torch.deg2rad(true_lat - pred_lat)
+            dlon = torch.deg2rad(true_lon - pred_lon)
+            a = torch.sin(dlat/2)**2 + \
+                torch.cos(torch.deg2rad(torch.clamp(pred_lat, -90, 90))) * \
+                torch.cos(torch.deg2rad(torch.clamp(true_lat, -90, 90))) * \
+                torch.sin(dlon/2)**2
+            c = torch.clamp(torch.sqrt(torch.clamp(a, 0.0, 1.0)), 0.0, 1.0)
+            km_err = (6371.0 * 2 * torch.asin(c)).mean()
 
-        km_err = haversine_km(pred_lat, pred_lon, true_lat, true_lon).mean()
-        return mse_loss + self.alpha * km_err, km_err
+        return mse_loss, km_err
+
 
 
 # ── DATA PREPARATION ───────────────────────────────────────────────────────────
@@ -265,7 +275,7 @@ def train_regression(X_tr, Yd_tr, Yp_tr, input_dim):
     model = ElephantLSTMv2(input_dim).to(DEVICE)
     logger.log(f"Parameters: {sum(p.numel() for p in model.parameters()):,}")
 
-    criterion = HaversineRegressionLoss(alpha=0.1)
+    criterion = SpatialMSELoss()
     optimizer = torch.optim.AdamW(model.parameters(), lr=LR, weight_decay=1e-4)
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=EPOCHS, eta_min=1e-6)
 
