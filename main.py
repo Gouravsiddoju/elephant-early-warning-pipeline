@@ -1,4 +1,6 @@
+import torch
 import pandas as pd
+import numpy as np
 import geopandas as gpd
 from datetime import datetime
 import os
@@ -12,7 +14,7 @@ from gee_extractor import batch_extract_features
 from human_features import extract_osm_features, merge_human_features
 from memory_features import compute_memory_features, compute_site_fidelity
 from feature_matrix import build_feature_matrix, engineer_features
-from model_trainer import prepare_train_test, train_random_forest, evaluate_model
+from model_trainer import prepare_train_test, train_lstm, evaluate_model, ElephantLSTM
 from predictor import predict_next_grid
 from alert_engine import identify_at_risk_villages, generate_alert_report, plot_prediction_map
 
@@ -89,7 +91,7 @@ def main():
     max_x, max_y = transformer.transform(STUDY_LON_MAX, STUDY_LAT_MAX)
     bounds_utm = (min_x, min_y, max_x, max_y)
 
-    grid_gdf = build_grid(bounds_utm, cell_size_m=2000)  # 2km cells — fewer classes, fits in RAM
+    grid_gdf = build_grid(bounds_utm, cell_size_m=5000)  # 5km cells — consistent with demo_scenarios
     gps_df   = assign_gps_to_grid(gps_df, grid_gdf)
     transitions_df = compute_transitions(gps_df)
     print(f"[{datetime.now().isoformat()}] Transitions computed: {len(transitions_df)} rows.")
@@ -117,12 +119,13 @@ def main():
     df.to_csv(out_csv, index=False)
     print(f"[{datetime.now().isoformat()}] Saved feature matrix ({df.shape}) to {out_csv}")
 
-    # ── STAGE 7: MODEL TRAINING ───────────────────────────────────────────────
-    print(f"\n[{datetime.now().isoformat()}] -- STAGE 7: Model Training --")
+    # ── STAGE 7: LSTM MODEL TRAINING ──────────────────────────────────────────
+    print(f"\n[{datetime.now().isoformat()}] -- STAGE 7: LSTM Model Training --")
     X_train, X_test, y_train, y_test = prepare_train_test(df)
     
-    rf_model = train_random_forest(X_train, y_train)
-    metrics  = evaluate_model(rf_model, X_test, y_test)
+    num_classes = len(np.unique(np.concatenate((y_train, y_test))))
+    lstm_model = train_lstm(X_train, y_train, input_dim=X_train.shape[2], output_dim=num_classes, epochs=100, batch_size=256)
+    metrics = evaluate_model(lstm_model, X_test, y_test)
     print("\n=== EVALUATION METRICS ===")
     for k, v in metrics.items():
         print(f"  {k}: {v:.4f}")
@@ -132,33 +135,19 @@ def main():
 
     # ── STAGE 8: LIVE PREDICTION DEMO ────────────────────────────────────────
     print(f"\n[{datetime.now().isoformat()}] -- STAGE 8: Live Prediction Demo --")
-    # Use stats from the real data as sensible demo inputs
-    demo_input = {
-        'elephant_id': '1',
-        'from_grid': transitions_df.iloc[0]['from_grid'],
-        'date': '2015-08-01',
-        'step_dist_m': float(gps_df['Dist'].median()),
-        'turning_angle': 0.0,
-        'ndvi': 0.5,
-        'rainfall_7d_mm': 5.0,
-        'village_distance_m': gps_df.get('village_distance_m', pd.Series([5000.0])).median(),
-        'cropland_pct': 0.05,
-        'season': 2,
-        'time_of_day': 1,
-        'repeat_count': 2,
-        'success_score': 0.4,
-        'landcover_class': 9,
-        'is_forest': 0,
-        'is_cropland': 0,
-        'visit_count': 5,
-        'last_visit_days_ago': 10.0,
-        'is_home_range_core': 0,
-        'hour': 10,
-        'month': 8,
-        'Field': 0, 'River': 0, 'Corridor': 1, 'Trees': 0
-    }
-
-    predictions = predict_next_grid(rf_model, scaler, label_encoder, demo_input)
+    # Load LSTM model for prediction
+    features = joblib.load('feature_names.pkl')
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    pred_model = ElephantLSTM(input_dim=len(features), hidden_dim=128, num_layers=2, output_dim=num_classes)
+    pred_model.load_state_dict(torch.load('elephant_lstm.pt', map_location=device))
+    pred_model.to(device)
+    pred_model.eval()
+    
+    # Build a sequence from the last 10 transition rows of elephant 1
+    eid = transitions_df['elephant_id'].iloc[0]
+    demo_seq = transitions_df[transitions_df['elephant_id'] == eid].sort_values('Date_Time').tail(10).to_dict('records')
+    
+    predictions = predict_next_grid(pred_model, scaler, label_encoder, demo_seq)
     print("\nTop-5 Predicted Next Grid Cells:")
     print(predictions.to_string(index=False))
 
@@ -168,18 +157,19 @@ def main():
     villages_at_risk = identify_at_risk_villages(predictions, osm_villages_gdf)
     
     alert = generate_alert_report(predictions, villages_at_risk)
-    alert['elephant_id'] = demo_input['elephant_id']
-    alert['current_grid'] = demo_input['from_grid']
+    last_step = demo_seq[-1]
+    alert['elephant_id'] = last_step.get('elephant_id', 'Unknown')
+    alert['current_grid'] = last_step.get('from_grid', 'Unknown')
     with open('alert_output.json', 'w') as f:
         json.dump(alert, f, indent=4)
     
     print("\n=== ALERT ===")
     print(json.dumps(alert, indent=2))
 
-    plot_prediction_map(demo_input['from_grid'], predictions, villages_at_risk, grid_gdf)
+    plot_prediction_map(last_step.get('from_grid', ''), predictions, villages_at_risk, grid_gdf)
 
     print(f"\n[{datetime.now().isoformat()}] === PIPELINE COMPLETE ===")
-    print("Output files: feature_matrix.csv, elephant_model.pkl, evaluation_report.png, alert_output.json, alert_map.html")
+    print("Output files: feature_matrix.csv, elephant_lstm.pt, evaluation_report.png, alert_output.json, alert_map.html")
 
 if __name__ == '__main__':
     main()

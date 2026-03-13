@@ -19,6 +19,7 @@ def compute_memory_features(transitions_df: pd.DataFrame) -> pd.DataFrame:
     df['month'] = df['Date_Time'].dt.month
     
     # 1. repeat_count: how many times this EXACT transition occurred previously
+    df = df.sort_values(['elephant_id', 'Date_Time']).reset_index(drop=True)
     df['transition_id'] = df['from_grid'] + "_" + df['to_grid']
     df['repeat_count'] = df.groupby(['elephant_id', 'transition_id']).cumcount()
     
