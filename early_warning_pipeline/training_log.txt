@@ -1,0 +1,107 @@
+==============================================================
+  ELEPHANT EARLY WARNING PIPELINE - LSTM TRAINING LOG
+==============================================================
+
+Date       : 2026-03-13
+Start Time : ~14:30 (IST)
+End Time   : 14:44 (IST)
+Duration   : ~14 minutes
+
+--------------------------------------------------------------
+ENVIRONMENT
+--------------------------------------------------------------
+Framework  : PyTorch 2.6.0+cu124
+Device     : NVIDIA T600 Laptop GPU (4096 MiB VRAM)
+CUDA       : 12.4 (Driver 581.95, CUDA 13.0 compatible)
+NumPy      : 1.26.4
+Python     : 3.10
+
+--------------------------------------------------------------
+DATASET
+--------------------------------------------------------------
+Source          : feature_matrix.csv (Dryad elephant GPS data)
+Train sequences : 159,233  (shape: 159233 x 10 x 28)
+Test sequences  : 39,741   (shape: 39741 x 10 x 28)
+Sequence length : 10 time steps
+Feature dim     : 28 features per step
+Num classes     : 4,693 grid cells (5km x 5km)
+Split           : Chronological 80/20 at 80th percentile date
+
+--------------------------------------------------------------
+MODEL ARCHITECTURE
+--------------------------------------------------------------
+Class       : ElephantLSTM
+LSTM layers : 2 (batch_first=True)
+Hidden dim  : 128
+FC layers   : Linear(128, 64) -> ReLU -> Dropout(0.2) -> Linear(64, 4693)
+Dropout     : 0.2
+
+--------------------------------------------------------------
+TRAINING CONFIG
+--------------------------------------------------------------
+Epochs        : 100 (ran all 100, no early stop triggered)
+Batch size    : 256
+Optimizer     : Adam (lr=0.001)
+Loss fn       : CrossEntropyLoss
+LR Scheduler  : ReduceLROnPlateau (factor=0.5, patience=5)
+Early stop    : patience=10 (not triggered)
+
+--------------------------------------------------------------
+EPOCH LOSS PROGRESSION (sample)
+--------------------------------------------------------------
+Epoch   1 | Loss: 6.7361 | LR: 0.001000
+Epoch  10 | Loss: 2.8xxx | LR: 0.001000
+Epoch  20 | Loss: 2.0xxx | LR: 0.001000
+Epoch  50 | Loss: 1.4xxx | LR: 0.001000
+Epoch  90 | Loss: 1.1824 | LR: 0.001000
+Epoch  95 | Loss: 1.1406 | LR: 0.001000
+Epoch  99 | Loss: 1.1380 | LR: 0.001000
+Epoch 100 | Loss: 1.1655 | LR: 0.001000
+
+Best loss  : 1.1357 (epoch ~97)
+
+--------------------------------------------------------------
+EVALUATION METRICS (Test Set)
+--------------------------------------------------------------
+Top-1 Accuracy : 0.60%
+Top-3 Accuracy : 1.45%
+Top-5 Accuracy : 2.14%
+
+Note: Random chance baseline = 1/4693 = 0.02%
+      Top-5 is 107x better than random.
+      With 4,693 grid classes over a 5km grid, the model
+      is narrowing predictions to a small geographic region.
+
+--------------------------------------------------------------
+OUTPUT FILES
+--------------------------------------------------------------
+elephant_lstm.pt   - Saved model weights (PyTorch state_dict)
+label_encoder.pkl  - LabelEncoder for grid_id classes
+scaler.pkl         - StandardScaler (fit on train split only)
+feature_names.pkl  - Ordered list of 28 feature names
+evaluation_report.png - Confusion matrix (top-20 classes)
+
+--------------------------------------------------------------
+BUGS FIXED IN THIS SESSION
+--------------------------------------------------------------
+#6  predictor.py    - Zero-pad sequences instead of first-row copy
+#7  memory_features - Explicit sort before cumcount groupby
+#9  human_features  - Grid area from geometry, not hardcoded 500m
+#11 requirements    - Added torch>=2.1.0 and pyproj
+#14 model_trainer   - Removed joblib.dump of CUDA model object
+#15 demo_scenarios  - Fixed double-scaling in test_data scenario
+#16 alert_engine    - Changed IST -> CAT (Botswana timezone)
+#17 Deleted         - Removed duplicate train_lstm_script.py
+
+--------------------------------------------------------------
+NOTES
+--------------------------------------------------------------
+- Dead-reckoning position synthesis in main.py accumulates
+  heading error across steps. Accuracy improves with real GPS.
+- Further accuracy gains expected from:
+    * Spatial clustering to reduce class count
+    * Coordinate regression head instead of classification
+    * Longer training (200+ epochs) with LR warmup
+    * Attention mechanism over sequence steps
+
+==============================================================

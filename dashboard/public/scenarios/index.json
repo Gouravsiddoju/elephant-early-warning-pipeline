@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "All Clear",
+    "description": "Standard operation. All elephants within park boundaries.",
+    "file": "scenario_1.json"
+  },
+  {
+    "id": 2,
+    "title": "Crop Raid Alert",
+    "description": "Elephant 5 and 9 spotted moving towards Nata farmlands.",
+    "file": "scenario_2.json"
+  },
+  {
+    "id": 3,
+    "title": "Village Proximity",
+    "description": "Elephant 7 and 11 within 1km of Kasane & Maun residential areas.",
+    "file": "scenario_3.json"
+  },
+  {
+    "id": 4,
+    "title": "Poaching Threat",
+    "description": "Erratic behavior and stampede patterns detected in 3 herds.",
+    "file": "scenario_4.json"
+  },
+  {
+    "id": 5,
+    "title": "Boundary Crossing",
+    "description": "Elephant 2 and 8 crossing into private concession NG/32.",
+    "file": "scenario_5.json"
+  }
+]

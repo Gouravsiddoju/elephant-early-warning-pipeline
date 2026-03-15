@@ -1,0 +1,32 @@
+# .gitignore for Elephant Early Warning Pipeline
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+*.egg-info/
+
+# Large generated files
+feature_matrix.csv
+grid_centroids.csv
+gee_cache.pkl
+
+# Trained model artifacts (too large for git)
+elephant_model.pkl
+scaler.pkl
+label_encoder.pkl
+feature_names.pkl
+
+# Output files
+alert_map.html
+alert_output.json
+evaluation_report.png
+
+# VS Code / IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 200 15% 8%;
+    --foreground: 180 10% 85%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 200 15% 13%;
+    --popover-foreground: 180 10% 85%;
+
+    --primary: 152 45% 45%;
+    --primary-foreground: 200 15% 8%;
+
+    --secondary: 200 12% 16%;
+    --secondary-foreground: 180 10% 75%;
+
+    --muted: 200 12% 14%;
+    --muted-foreground: 200 10% 50%;
+
+    --accent: 36 80% 55%;
+    --accent-foreground: 200 15% 8%;
+
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 200 12% 18%;
+    --input: 200 12% 18%;
+    --ring: 152 45% 45%;
+
+    --radius: 0.5rem;
+
+    --safe: 152 55% 45%;
+    --warning: 36 80% 55%;
+    --danger: 0 65% 50%;
+    --info: 210 60% 55%;
+
+    --sidebar-background: 200 15% 10%;
+    --sidebar-foreground: 180 10% 75%;
+    --sidebar-primary: 152 45% 45%;
+    --sidebar-primary-foreground: 200 15% 8%;
+    --sidebar-accent: 200 12% 16%;
+    --sidebar-accent-foreground: 180 10% 75%;
+    --sidebar-border: 200 12% 18%;
+    --sidebar-ring: 152 45% 45%;
+  }
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  .bg-card, [class*="bg-card"] {
+    --foreground: 0 0% 10%;
+    --muted-foreground: 0 0% 40%;
+    --secondary-foreground: 0 0% 20%;
+    --border: 0 0% 88%;
+    color: hsl(var(--foreground));
+  }
+}

@@ -1,0 +1,57 @@
+# Elephant Movement RL Ecosystem Configuration
+
+simulation:
+  random_seed: 42
+  duration_days: 90       # Longer simulation to see learning patterns
+  steps_per_hour: 6       # 1 timestep = 10 minutes
+  
+rl_training:
+  total_timesteps: 10000
+  learning_rate: 0.0003
+  n_steps: 2048
+  batch_size: 64
+  
+environment:
+  grid_size_x: 200
+  grid_size_y: 200
+  noise_scale: 25.0       # Base scale for Perlin/Gaussian noise
+  water_bodies: 10        # Number of pond/lakes
+  river_count: 5
+  village_count: 20
+  corridor_count: 8
+  
+weather:
+  base_temperature: 25.0
+  temp_variance: 10.0
+  base_rainfall: 5.0
+  drought_chance: 0.1     # Chance for a prolonged dry spell
+  storm_chance: 0.05
+
+herd:
+  count: 3                # multiple initial herds
+  initial_size: 20
+  split_threshold: 40     # Size at which herd might split
+  herd_radius: 5          # Max distance of followers from leader
+
+elephant:
+  avg_speed_kmh: 0.394    # Calibrated from Kruger 2007 GPS data
+  max_speed_kmh: 21.342   # Calibrated from Kruger 2007 GPS data
+  daily_distance_m: 8984  # Calibrated from Kruger 2007 GPS data
+  rest_probability: 0.57  # Calibrated from Kruger 2007 GPS data
+
+  
+movement:
+  # Base reward weights (RL agent observes and acts to maximize these)
+  rewards:
+    r_food: 3.0
+    r_water: 2.0
+    r_forest_safety: 1.0
+    r_human_dist: -2.0
+    r_slope_penalty: -1.0
+    r_crop_feeding: 5.0
+    r_conflict_event: -10.0
+  
+paths:
+  output_dir: "output/"
+  datasets_dir: "output/datasets/"
+  visualizations_dir: "output/visualizations/"

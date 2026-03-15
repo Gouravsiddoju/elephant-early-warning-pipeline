@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Node
+node_modules/
+dist/
+.DS_Store
+
+# Elephant Tracking Specific
+early_warning_pipeline/botswana-260310-free.shp/
+early_warning_pipeline/doi_10_5061_dryad_dr7sqv9v9__v20200116/
+*.csv
+!early_warning_pipeline/feature_names.pkl
+!early_warning_pipeline/label_encoder.pkl
+!early_warning_pipeline/scaler.pkl
+!early_warning_pipeline/grid_centroids.csv
+
+# Large Model Files
+!early_warning_pipeline/elephant_lstm.pt
+
+# Artifacts
+.gemini/
+brain/
+walkthrough.md
+implementation_plan.md
+task.md
