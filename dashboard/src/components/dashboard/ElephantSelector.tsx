@@ -10,6 +10,18 @@ interface ElephantSelectorProps {
 const ElephantSelector = ({ elephants, selectedId, onSelect }: ElephantSelectorProps) => {
   return (
     <div className="flex items-center gap-1.5 flex-wrap">
+      <button
+        onClick={() => onSelect("all")}
+        className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-all border ${
+          selectedId === "all"
+            ? "border-primary/40 bg-primary/10 text-foreground"
+            : "border-border bg-card text-muted-foreground hover:bg-secondary hover:text-foreground"
+        }`}
+      >
+        <span className="h-2 w-2 rounded-full bg-blue-400" />
+        <span className="font-mono text-xs uppercase">All</span>
+        <span className="text-xs">Elephants</span>
+      </button>
       {elephants.map((el) => (
         <button
           key={el.id}

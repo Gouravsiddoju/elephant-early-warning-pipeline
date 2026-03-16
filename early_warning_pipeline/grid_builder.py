@@ -88,15 +88,20 @@ def assign_gps_to_grid(gps_df: pd.DataFrame, grid_gdf: gpd.GeoDataFrame) -> pd.D
     # Merge centroids onto joined DataFrame
     joined = joined.merge(centroid_map, on='grid_id', how='left')
     
-    if 'index_right' in joined.columns:
-        joined = joined.drop(columns=['index_right'])
+    # After join, explicitly catch and log failures
+    missing_mask = joined['grid_id'].isna()
+    missing_count = missing_mask.sum()
+    if missing_count > 0:
+        print(f"[{datetime.now().isoformat()}] WARNING: {missing_count} GPS points did not fall into any grid cell.")
+        print(f"  Sample out-of-bounds points:")
+        print(joined[missing_mask][[lon_col, lat_col]].head(5).to_string())
+        print(f"  -> Expand STUDY_LON/LAT bounds in main.py to fix this.")
+    
+    # Drop unassigned points — never let NaN propagate
+    joined = joined.dropna(subset=['grid_id'])
     
     # Convert back to standard DataFrame
     final_df = pd.DataFrame(joined.drop(columns=['geometry']))
-    
-    missing = final_df['grid_id'].isna().sum()
-    if missing > 0:
-         print(f"[{datetime.now().isoformat()}] WARNING: {missing} points did not fall into any grid cell.")
     
     return final_df
 

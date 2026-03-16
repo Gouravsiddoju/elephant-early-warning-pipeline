@@ -76,19 +76,50 @@ def predict_next_grid(model, scaler, label_encoder, current_input_seq: list, fea
         outputs = model(X_tensor)
         probs = torch.softmax(outputs, dim=1).cpu().numpy()[0]
     
-    top5_indices = np.argsort(probs)[-5:][::-1]
-    top5_probs = probs[top5_indices]
-    
-    top5_grid_ids = label_encoder.inverse_transform(top5_indices) if label_encoder else top5_indices
-    
-    # Load centroids map if available
+    # Load centroids map
     centroid_map = {}
     if os.path.exists(centroids_path):
         cd_df = pd.read_csv(centroids_path)
         centroid_map = cd_df.set_index('grid_id').to_dict('index')
     
-    results = []
+    # ─── SPATIAL PRIOR MASKING ───────────────────────────────────────────────
+    # Prevent "teleportation" and "phantom" cells by zeroing out:
+    # 1. Cells not in our current spatial index (centroid_map)
+    # 2. Cells very far (>100km) from current pos
+    cur_grid = current_input_seq[-1].get('from_grid', 'Unknown')
     
+    # We must mask ALL possible classes returned by the softmax
+    for idx, g_id in enumerate(label_encoder.classes_):
+        if g_id not in centroid_map:
+            probs[idx] = 0.0
+            continue
+            
+        if cur_grid in centroid_map:
+            clat = centroid_map[cur_grid]['centroid_lat']
+            clon = centroid_map[cur_grid]['centroid_lon']
+            tlat = centroid_map[g_id]['centroid_lat']
+            tlon = centroid_map[g_id]['centroid_lon']
+            
+            # Distance filter (approx 111km per degree)
+            dist_approx_km = ((tlat - clat)**2 + (tlon - clon)**2)**0.5 * 111.0
+            if dist_approx_km > 100.0:
+                probs[idx] = 0.0
+    # ────────────────────────────────────────────────────────────────────────
+    
+    # Normalize probabilities after masking
+    p_sum = probs.sum()
+    if p_sum > 0:
+        probs /= p_sum
+    else:
+        # Emergency fallback: if all masked, avoid nan (rare but possible if no cells in range)
+        probs = np.ones_like(probs) / len(probs)
+    
+    top5_indices = np.argsort(probs)[-5:][::-1]
+    top5_probs = probs[top5_indices]
+    
+    top5_grid_ids = label_encoder.inverse_transform(top5_indices) if label_encoder else top5_indices
+    
+    results = []
     for rank, (g_id, p) in enumerate(zip(top5_grid_ids, top5_probs), start=1):
         lon = centroid_map.get(g_id, {}).get('centroid_lon', np.nan)
         lat = centroid_map.get(g_id, {}).get('centroid_lat', np.nan)
@@ -102,8 +133,6 @@ def predict_next_grid(model, scaler, label_encoder, current_input_seq: list, fea
         })
         
     res_df = pd.DataFrame(results)
-    
-    # Store the context (features) used for this prediction
     inference_context = input_df.iloc[-1].to_dict()
     
     print(f"[{datetime.now().isoformat()}] Prediction complete.")

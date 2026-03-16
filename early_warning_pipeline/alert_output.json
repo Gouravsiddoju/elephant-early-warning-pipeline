@@ -1,0 +1,16 @@
+{
+    "timestamp": "2026-03-16T18:30:12.419658",
+    "elephant_id": 1,
+    "current_grid": "R0039_C0041",
+    "prediction_horizon_hours": 48,
+    "top_prediction": {
+        "grid_id": "R0021_C0037",
+        "probability": 0.9999114871025085,
+        "coordinates": [
+            24.7093310997673,
+            -18.18416135808376
+        ]
+    },
+    "at_risk_villages": [],
+    "recommended_action": "SAFE: No settlements within 5km predicted path."
+}

@@ -76,6 +76,16 @@ def prepare_train_test(df: pd.DataFrame):
     """
     print(f"[{datetime.now().isoformat()}] Preparing train/test split (Chronological) for LSTM...")
     
+    # 0. Drop rows where from_grid or to_grid is '0', NaN, or empty
+    invalid_mask = (
+        df['from_grid'].astype(str).isin(['0', 'nan', '']) |
+        df['to_grid'].astype(str).isin(['0', 'nan', ''])
+    )
+    dropped = invalid_mask.sum()
+    if dropped > 0:
+        print(f"[{datetime.now().isoformat()}] WARNING: Dropping {dropped} rows with invalid grid IDs ('0' or NaN).")
+    df = df[~invalid_mask].copy()
+    
     # 1. Filter out rare classes
     class_counts = df['to_grid'].value_counts()
     valid_classes = class_counts[class_counts >= 10].index
@@ -143,7 +153,7 @@ def train_lstm(X_train, y_train, input_dim, output_dim, epochs=10, batch_size=25
     
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
-    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5, verbose=True)
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5)
     
     X_tensor = torch.tensor(X_train, dtype=torch.float32)
     y_tensor = torch.tensor(y_train, dtype=torch.long)

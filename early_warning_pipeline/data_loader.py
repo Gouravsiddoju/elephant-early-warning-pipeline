@@ -71,7 +71,7 @@ def load_shapefile(filepath: str) -> gpd.GeoDataFrame:
         
     return gdf
 
-def validate_spatial_bounds(gdf: pd.DataFrame, lon_min=23, lon_max=28, lat_min=-22, lat_max=-17) -> pd.DataFrame:
+def validate_spatial_bounds(gdf: pd.DataFrame, lon_min=23, lon_max=31, lat_min=-23, lat_max=-17) -> pd.DataFrame:
     """
     Assert all GPS points fall within Botswana bounding box.
     Flag and remove outliers, log count removed.

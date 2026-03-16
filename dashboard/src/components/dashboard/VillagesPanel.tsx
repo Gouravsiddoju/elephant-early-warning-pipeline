@@ -41,7 +41,7 @@ const VillagesPanel = ({ villages }: VillagesPanelProps) => {
               </div>
               <div className="flex items-center justify-between mt-1">
                 <span className="text-[11px] text-muted-foreground">
-                  Pop. {village.population.toLocaleString()}
+                  Pop. {(village.population ?? 0).toLocaleString()}
                 </span>
                 {village.atRisk && (
                   <span className="text-[11px] font-semibold uppercase tracking-wider text-danger">

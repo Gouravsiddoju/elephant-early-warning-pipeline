@@ -18,18 +18,18 @@ import AlertFeed from "@/components/dashboard/AlertFeed";
 import MovementChart from "@/components/dashboard/MovementChart";
 import StatsBar from "@/components/dashboard/StatsBar";
 import ElephantMapPanel from "@/components/dashboard/ElephantMapPanel";
+import StatusIndicator from "@/components/dashboard/StatusIndicator";
 
 const ELEPHANT_COLORS = [
   "#4ECDC4", "#FF6B6B", "#FFE66D", "#A8E6CF", "#FF8E53",
   "#C3A6FF", "#56CFE1", "#FF9A9E",
 ];
 
-
 const Index = () => {
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>("all");
   const [selectedRank, setSelectedRank] = useState<number | null>(1);
   const [scenarios, setScenarios] = useState<ScenarioMeta[]>([]);
   const [activeScenarioId, setActiveScenarioId] = useState<number | null>(null);
@@ -48,7 +48,7 @@ const Index = () => {
       .then((d) => {
         setData(d);
         setActiveScenarioId(id);
-        if (d.elephants.length > 0) setSelectedId(d.elephants[0].id);
+        setSelectedId("all");
         setError(null);
       })
       .catch((e) => setError(e.message))
@@ -60,7 +60,7 @@ const Index = () => {
     loadDashboardData()
       .then((d) => {
         setData(d);
-        if (d.elephants.length > 0) setSelectedId(d.elephants[0].id);
+        setSelectedId("all");
         setLoading(false);
       })
       .catch((e) => {
@@ -94,16 +94,30 @@ const Index = () => {
   if (!data) return null;
 
   const elephants: Elephant[]        = data.elephants;
-  const currentId                     = selectedId ?? elephants[0]?.id;
-  const elephantIdx                   = elephants.findIndex((e) => e.id === currentId);
-  const elephantColor                 = ELEPHANT_COLORS[elephantIdx >= 0 ? elephantIdx : 0];
-  const elephant: Elephant            = elephants.find((e) => e.id === currentId) ?? elephants[0];
-  const predictions: Prediction[]     = data.predictionsMap[currentId] ?? [];
-  const villages: Village[]           = data.villagesMap[currentId]    ?? [];
-  const topPrediction: Prediction | undefined = predictions[0];
-  const movement: MovementPoint[]     = data.movementMap?.[currentId]  ?? [];
-  const historyPath: number[][]       = data.historyMap?.[currentId]   ?? [];
-  const filteredAlerts: AlertEvent[]  = data.alertEvents.filter((a) => a.elephantId === currentId);
+  const isAllView                    = selectedId === "all";
+  
+  // Data for the display
+  const currentElephant = isAllView 
+    ? elephants[0] // Fallback for components that need a single elephant but we are in all view
+    : elephants.find((e) => e.id === selectedId) ?? elephants[0];
+
+  const predictions = isAllView
+    ? Object.values(data.predictionsMap).flat().sort((a, b) => b.confidence - a.confidence)
+    : data.predictionsMap[selectedId!] ?? [];
+
+  const villages = isAllView
+    ? Object.values(data.villagesMap).flat().filter((v, i, self) => i === self.findIndex(t => t.name === v.name))
+    : data.villagesMap[selectedId!] ?? [];
+
+  const topPrediction = predictions[0];
+  
+  const movement = isAllView
+    ? [] // We might want aggregate movement or just skip it for all view
+    : data.movementMap?.[selectedId!] ?? [];
+
+  const filteredAlerts = isAllView
+    ? data.alertEvents
+    : data.alertEvents.filter((a) => a.elephantId === selectedId);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -139,7 +153,7 @@ const Index = () => {
           </div>
           <ElephantSelector
             elephants={elephants}
-            selectedId={currentId}
+            selectedId={selectedId || "all"}
             onSelect={(id) => {
               setSelectedId(id);
               setSelectedRank(1);
@@ -156,46 +170,63 @@ const Index = () => {
         </div>
 
         {/* Dashboard Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Left Column */}
-          <div className="space-y-6">
-            <CurrentStatePanel elephant={elephant} />
-            {topPrediction && (
-              <TopPredictionPanel prediction={topPrediction} villages={villages} />
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+          {/* Left Column (Requirement 2) */}
+          <div className="space-y-6 lg:col-span-1">
+            {!isAllView && <CurrentStatePanel elephant={currentElephant} />}
+            {isAllView && (
+               <div className="rounded-lg border border-border bg-card p-5">
+                 <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
+                    Elephants Overview
+                 </h3>
+                 <div className="space-y-2">
+                    {elephants.map(e => (
+                      <div key={e.id} className="flex items-center justify-between text-sm">
+                        <span>{e.name}</span>
+                        <StatusIndicator status={e.status} size="sm" />
+                      </div>
+                    ))}
+                 </div>
+               </div>
             )}
-            <VillagesPanel villages={villages} />
-          </div>
-
-          {/* Center Column */}
-          <div className="space-y-6">
-            <RankedPredictionsPanel
-              predictions={predictions}
-              selectedRank={selectedRank}
-              onSelectRank={setSelectedRank}
-            />
             <MovementChart movement={movement} />
           </div>
 
-          {/* Right Column */}
-          <div className="space-y-6">
+          {/* Center Column (Requirement 3) */}
+          <div className="space-y-6 lg:col-span-2">
+            {topPrediction && (
+              <TopPredictionPanel 
+                prediction={topPrediction} 
+                villages={villages} 
+                allPredictions={predictions}
+              />
+            )}
+            
+            {/* Full-width Map for selected elephant (Requirement 5) */}
+            <div className="mt-0">
+              <ElephantMapPanel
+                elephant={isAllView ? null as any : currentElephant}
+                allElephants={isAllView ? elephants : undefined}
+                predictions={predictions}
+                historyPath={isAllView ? [] : (data.historyMap?.[selectedId!] ?? [])}
+                color={isAllView ? "#4ECDC4" : ELEPHANT_COLORS[elephants.findIndex(e => e.id === selectedId) % ELEPHANT_COLORS.length]}
+                allPredictions={isAllView ? data.predictionsMap : undefined}
+                villages={villages}
+              />
+            </div>
+          </div>
+
+          {/* Right Column (Requirement 4) */}
+          <div className="space-y-6 lg:col-span-1">
+            <VillagesPanel villages={villages} />
             <AlertFeed
-              alerts={filteredAlerts.length > 0 ? filteredAlerts : data.alertEvents}
+              alerts={filteredAlerts}
               onSelectElephant={(id) => {
                 setSelectedId(id);
                 setSelectedRank(1);
               }}
             />
           </div>
-        </div>
-
-        {/* Full-width Map for selected elephant */}
-        <div className="mt-6">
-          <ElephantMapPanel
-            elephant={elephant}
-            predictions={predictions}
-            historyPath={historyPath}
-            color={elephantColor}
-          />
         </div>
       </main>
     </div>

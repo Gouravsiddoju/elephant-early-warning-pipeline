@@ -28,8 +28,8 @@ OSM_LAND   = os.path.join(OSM_DIR, 'gis_osm_landuse_a_free_1.shp')
 
 # Botswana study area bounding box in EPSG:4326 — will be converted for grid
 # Using the GPS data itself as the bounding reference
-STUDY_LON_MIN, STUDY_LON_MAX = 23.0, 28.0
-STUDY_LAT_MIN, STUDY_LAT_MAX = -22.0, -17.0
+STUDY_LON_MIN, STUDY_LON_MAX = 23.0, 31.0
+STUDY_LAT_MIN, STUDY_LAT_MAX = -23.0, -17.0
 
 def main():
     print(f"[{datetime.now().isoformat()}] === STARTING ELEPHANT EARLY WARNING PIPELINE ===")
@@ -147,7 +147,7 @@ def main():
     eid = transitions_df['elephant_id'].iloc[0]
     demo_seq = transitions_df[transitions_df['elephant_id'] == eid].sort_values('Date_Time').tail(10).to_dict('records')
     
-    predictions = predict_next_grid(pred_model, scaler, label_encoder, demo_seq)
+    predictions, inference_context = predict_next_grid(pred_model, scaler, label_encoder, demo_seq)
     print("\nTop-5 Predicted Next Grid Cells:")
     print(predictions.to_string(index=False))
 

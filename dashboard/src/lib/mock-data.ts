@@ -27,8 +27,10 @@ export interface Prediction {
 export interface Village {
   name: string;
   distanceKm: number;
-  population: number;
+  type?: string;
+  position: { lat: number; lng: number };
   atRisk: boolean;
+  population: number;
 }
 
 export interface AlertEvent {

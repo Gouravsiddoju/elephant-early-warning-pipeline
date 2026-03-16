@@ -11,12 +11,8 @@ def build_feature_matrix(gps_df: pd.DataFrame, transitions_df: pd.DataFrame, gri
     DATASET C: from grid_gdf
     DATASET E: from memory
     """
-    print(f"[{datetime.now().isoformat()}] Building Final Feature Matrix...")
-    
-    df = transitions_df.copy()
-    
-    gps_rename = gps_df.rename(columns={'id': 'elephant_id'})
-    
+    # Only pull columns NOT already in transitions_df
+    existing_cols = df.columns.tolist()
     cols_to_pull = [
         'elephant_id', 'Date_Time', 
         'ndvi', 'landcover_class', 'is_forest', 'is_cropland', 'rainfall_7d_mm',
@@ -24,17 +20,31 @@ def build_feature_matrix(gps_df: pd.DataFrame, transitions_df: pd.DataFrame, gri
         'visit_count', 'last_visit_days_ago', 'is_home_range_core'
     ]
     
-    cols_to_pull = [c for c in cols_to_pull if c in gps_rename.columns]
+    # Filter to what exists in gps_df AND isn't already in df (except join keys)
+    cols_to_pull = [c for c in cols_to_pull if c in gps_rename.columns and (c in ['elephant_id', 'Date_Time'] or c not in existing_cols)]
     
+    print(f"[{datetime.now().isoformat()}] Merging {len(cols_to_pull)-2} external features...")
     df = df.merge(gps_rename[cols_to_pull], on=['elephant_id', 'Date_Time'], how='left')
     
     df['month'] = df['Date_Time'].dt.month
     df['hour'] = df['Date_Time'].dt.hour
     
-    if 'Season' in df.columns:
-        df = df.rename(columns={'Season': 'season'})
-    if 'TimeofDay' in df.columns:
-        df = df.rename(columns={'TimeofDay': 'time_of_day'})
+    # Standardize names to lowercase
+    rename_map = {
+        'Season': 'season',
+        'TimeofDay': 'time_of_day',
+        'Dist': 'step_dist_m',
+        'Angle': 'turning_angle'
+    }
+    df = df.rename(columns={k: v for k, v in rename_map.items() if k in df.columns})
+    
+    # Check for any remaining _x/_y suffixes and clean them
+    for col in df.columns:
+        if col.endswith('_x'):
+            clean_name = col[:-2]
+            if f"{clean_name}_y" in df.columns:
+                df = df.drop(columns=[f"{clean_name}_y"])
+                df = df.rename(columns={col: clean_name})
         
     grid_cols = ['grid_id', 'village_distance_m', 'road_density', 'cropland_pct']
     grid_cols = [c for c in grid_cols if c in grid_gdf.columns]
@@ -81,8 +91,17 @@ def engineer_features(df: pd.DataFrame) -> pd.DataFrame:
     if len(df) < initial_len:
         print(f"[{datetime.now().isoformat()}] Dropped {initial_len - len(df)} rows missing target 'to_grid'.")
         
-    # Ensure all required columns evaluate nicely
-    df = df.fillna(0)
+    # Preserve grid ID columns before bulk fillna
+    grid_cols = ['from_grid', 'to_grid', 'elephant_id', 'Date_Time']
+    grid_cols = [c for c in grid_cols if c in df.columns]
+    saved = df[grid_cols].copy()
+    
+    # Only fill NaN in numeric feature columns
+    numeric_cols = df.select_dtypes(include='number').columns
+    df[numeric_cols] = df[numeric_cols].fillna(0)
+    
+    # Restore grid cols intact
+    df[grid_cols] = saved
         
     print(f"[{datetime.now().isoformat()}] Engineered feature matrix completed.")
     return df

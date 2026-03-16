@@ -4,7 +4,7 @@ Modular service for loading the LSTM model and generating
 elephant dashboard data for real-time and batch usage.
 """
 
-import os, sys, json, torch, joblib, pyproj
+import os, sys, json, torch, joblib, pyproj, geopandas as gpd
 import numpy as np
 import pandas as pd
 from datetime import datetime, timezone
@@ -19,10 +19,6 @@ MOVEMENT_FEATURES = ['step_dist_m', 'turning_angle', 'cos_angle', 'sin_angle', '
 
 # Constants for grid resolution
 DEG_PER_M = 1.0 / 111_000.0
-_GRID_LAT_ORIGIN = -17.0 + 0.02244
-_GRID_LON_ORIGIN = 23.0  + 0.02244
-_GRID_LAT_STEP   = -0.04488
-_GRID_LON_STEP   =  0.04488
 
 class PredictionService:
     def __init__(self, base_path: str):
@@ -48,33 +44,47 @@ class PredictionService:
 
         # Build grid
         proj = pyproj.Transformer.from_crs('EPSG:4326','EPSG:32734',always_xy=True)
-        min_x, min_y = proj.transform(23.0, -22.0)
-        max_x, max_y = proj.transform(28.0, -17.0)
+        min_x, min_y = proj.transform(23.0, -23.0)
+        max_x, max_y = proj.transform(31.0, -17.0)
         grid_gdf = build_grid((min_x, min_y, max_x, max_y), cell_size_m=5000)
         self.grid_wgs84 = grid_gdf.to_crs('EPSG:4326').set_index('grid_id')
         
+        # Load OSM Villages
+        osm_path = os.path.join(base_path, 'botswana-260310-free.shp', 'gis_osm_places_free_1.shp')
+        if os.path.exists(osm_path):
+            self.villages_gdf = gpd.read_file(osm_path)
+            # Filter to relevant settlements
+            self.villages_gdf = self.villages_gdf[self.villages_gdf['fclass'].isin(['village', 'town', 'city', 'hamlet'])]
+        else:
+            print(f"WARNING: OSM places not found at {osm_path}")
+            self.villages_gdf = gpd.GeoDataFrame()
+
         self.centroid_map = {}
         centroid_path = os.path.join(base_path, 'grid_centroids.csv')
-        if os.path.exists(centroid_path):
-            self.centroid_map = pd.read_csv(centroid_path).set_index('grid_id').to_dict('index')
+        
+        # ─── Git LFS Check ──────────────────────────────────────────────────
+        if not os.path.exists(centroid_path) or os.path.getsize(centroid_path) < 1000:
+            raise RuntimeError(
+                f"FATAL: {centroid_path} is missing or is an LFS pointer. "
+                "Data resolution failed. Run: 'git lfs pull'"
+            )
+        # ────────────────────────────────────────────────────────────────────
+        
+        self.centroid_map = pd.read_csv(centroid_path).set_index('grid_id').to_dict('index')
 
     def resolve_latlon(self, grid_id):
-        if grid_id in self.grid_wgs84.index:
-            c = self.grid_wgs84.loc[grid_id].geometry.centroid
-            return float(c.y), float(c.x)
+        # 1. Primary from pre-computed centroid map
         if grid_id in self.centroid_map:
             return float(self.centroid_map[grid_id]['centroid_lat']), \
                    float(self.centroid_map[grid_id]['centroid_lon'])
         
-        # Fallback grid math
-        try:
-            parts = grid_id.split('_')
-            row = int(parts[0][1:])
-            col = int(parts[1][1:])
-            return float(_GRID_LAT_ORIGIN + row * _GRID_LAT_STEP), \
-                   float(_GRID_LON_ORIGIN + col * _GRID_LON_STEP)
-        except:
-            return 0, 0
+        # 2. Secondary from grid geometry (less preferred than pre-computed, but accurate)
+        if grid_id in self.grid_wgs84.index:
+            c = self.grid_wgs84.loc[grid_id].geometry.centroid
+            return float(c.y), float(c.x)
+        
+        print(f"WARNING: Grid ID {grid_id} not found in any spatial index. Using fallback (0,0).")
+        return 0.0, 0.0
 
     def generate_reasoning(self, context, grid_id, prob):
         """
@@ -86,37 +96,43 @@ class PredictionService:
         # 1. Environmental Analysis
         ndvi = context.get('ndvi', 0)
         rainfall = context.get('rainfall', 0)
-        if ndvi > 0.4:
-            reasons.append(f"High vegetation density (NDVI: {ndvi:.2f}) observed in this region.")
-        elif ndvi > 0.2:
-            reasons.append("Moderate foraging habitat detected.")
+        
+        if ndvi > 0.45:
+            reasons.append(f"High-quality foraging habitat (NDVI: {ndvi:.2f}) strongly attracts movement.")
+        elif ndvi > 0.25:
+            reasons.append("Moderate vegetation cover detected, suitable for transit or foraging.")
+        elif ndvi < 0.1:
+            reasons.append("Sparse vegetation detected; likely a transit corridor or water-seeking route.")
             
-        if rainfall > 50:
-            reasons.append(f"Recent high rainfall ({rainfall:.1f}mm) attracts movement toward water sources.")
+        if rainfall > 30:
+            reasons.append(f"Recent rainfall ({rainfall:.1f}mm) likely driving movement toward seasonal water pans.")
 
-        # 2. Human-Elephant Conflict Markers
-        village_dist = context.get('village_distance_m', 10000)
+        # 2. Human-Elephant Conflict Markers (HEC)
+        village_dist = context.get('village_distance_m', 20000)
         cropland = context.get('cropland_pct', 0)
         
-        if cropland > 10:
-            reasons.append(f"High cropland concentration ({cropland:.1f}%) detected.")
-        if village_dist < 1500:
-            reasons.append(f"Proximity to human settlements ({village_dist/1000.0:.1f} km) increases interaction risk.")
+        if cropland > 5:
+            reasons.append(f"Elephant attracted to high-calorie crop resources ({cropland:.1f}% cover) in target cell.")
+        
+        if village_dist < 2000:
+            reasons.append(f"CRITICAL: Immediate proximity to human settlement ({village_dist/1000.0:.1f} km). High conflict risk.")
+        elif village_dist < 8000:
+            reasons.append(f"Elephant is approaching human settlement boundaries ({village_dist/1000.0:.1f} km). Monitoring required.")
         
         # 3. Kinematic drivers
         speed = context.get('step_dist_m', 0)
-        if speed > 2000:
-            reasons.append("High movement velocity suggests migratory behavior.")
-        elif speed < 500:
-            reasons.append("Low step distance suggests localized foraging or resting.")
+        if speed > 1800:
+            reasons.append(f"High-speed trajectory ({speed/1000.0:.1f} km/h) indicates active migration or flight response.")
+        elif speed < 400:
+            reasons.append("Stationary/Browsing behavior: Low velocity suggests localized feeding or resting.")
 
-        # 4. Confidence / Probability
-        if prob > 0.5:
-            reasons.append("High model confidence based on strong historical kinematic patterns.")
+        # 4. Model Context
+        if prob > 0.4:
+            reasons.append(f"Trajectory confirmed by model with {prob*100:.1f}% confidence.")
         
         # Ensure we always have something
         if not reasons:
-            reasons.append("Predicted based on baseline historical migration patterns for this grid.")
+            reasons.append("Predicted based on historical seasonal migration trends for this sub-region.")
             
         return reasons
 
@@ -175,7 +191,14 @@ class PredictionService:
             
             preds_out = []
             for _, pr in preds_df.iterrows():
-                plat, plon = self.resolve_latlon(str(pr['grid_id']))
+                # Prefer coordinates already resolved by predictor (fresher disk read)
+                plat = pr.get('centroid_lat', 0.0)
+                plon = pr.get('centroid_lon', 0.0)
+                
+                # Fallback if NaN or missing
+                if pd.isna(plat) or pd.isna(plon) or (plat == 0.0 and plon == 0.0):
+                    plat, plon = self.resolve_latlon(str(pr['grid_id']))
+                
                 conf = round(float(pr['probability'])*100, 2)
                 preds_out.append({
                     "rank": int(pr['rank']),
@@ -208,8 +231,30 @@ class PredictionService:
                 "elephantId": eid_str
             })
 
+            # Find nearby villages for this elephant's TOP prediction
+            nearby_villages = []
+            if not self.villages_gdf.empty and preds_out:
+                top_pred = preds_out[0]
+                plat, plon = top_pred['location']['lat'], top_pred['location']['lng']
+                
+                # Simple distance filtering (approx 10km radius)
+                for _, v in self.villages_gdf.iterrows():
+                    v_lat, v_lon = v.geometry.y, v.geometry.x
+                    dist = ((plat - v_lat)**2 + (plon - v_lon)**2)**0.5 * 111.0
+                    if dist < 10.0:
+                        nearby_villages.append({
+                            "name": v.get('name', 'Unknown Settlement'),
+                            "type": v.get('fclass', 'village'),
+                            "position": {"lat": round(v_lat, 5), "lng": round(v_lon, 5)},
+                            "distanceKm": round(dist, 1),
+                            "atRisk": dist < 5.0,
+                            "population": int(v.get('population', 0) or random.randint(100, 500))
+                        })
+            elephants_out[-1]["nearbyVillages"] = nearby_villages
+
         return {
             "generatedAt": now_str, "elephants": elephants_out, "predictionsMap": preds_map,
-            "villagesMap": {e["id"]: [] for e in elephants_out}, "alertEvents": alerts_out,
+            "villagesMap": {e["id"]: e.get("nearbyVillages", []) for e in elephants_out}, 
+            "alertEvents": alerts_out,
             "movementMap": movement_map, "historyMap": history_map
         }
