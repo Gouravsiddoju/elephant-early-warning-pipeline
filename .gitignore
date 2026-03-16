@@ -18,6 +18,8 @@ early_warning_pipeline/doi_10_5061_dryad_dr7sqv9v9__v20200116/
 !early_warning_pipeline/label_encoder.pkl
 !early_warning_pipeline/scaler.pkl
 !early_warning_pipeline/grid_centroids.csv
+!early_warning_pipeline/elephant_model.pkl
+early_warning_pipeline/gee_cache.pkl
 
 # Large Model Files
 !early_warning_pipeline/elephant_lstm.pt
