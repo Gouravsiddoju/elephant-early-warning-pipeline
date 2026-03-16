@@ -102,8 +102,12 @@ def predict_next_grid(model, scaler, label_encoder, current_input_seq: list, fea
         })
         
     res_df = pd.DataFrame(results)
+    
+    # Store the context (features) used for this prediction
+    inference_context = input_df.iloc[-1].to_dict()
+    
     print(f"[{datetime.now().isoformat()}] Prediction complete.")
-    return res_df
+    return res_df, inference_context
 
 if __name__ == "__main__":
     pass

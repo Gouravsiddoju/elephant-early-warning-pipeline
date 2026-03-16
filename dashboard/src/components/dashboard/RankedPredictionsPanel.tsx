@@ -69,6 +69,16 @@ const RankedPredictionsPanel = ({
               <p className="text-[11px] text-muted-foreground mt-1">
                 {pred.location.lat.toFixed(4)}, {pred.location.lng.toFixed(4)} | {pred.distanceKm} km away
               </p>
+              {pred.reasoning && pred.reasoning.length > 0 && (
+                <div className="mt-2 space-y-1.5 border-t border-border/40 pt-2">
+                  {pred.reasoning.map((reason, idx) => (
+                    <div key={idx} className="flex gap-2 text-[10px] text-muted-foreground/90 leading-tight">
+                      <div className="w-1 h-1 rounded-full bg-primary/40 mt-1 shrink-0" />
+                      <span>{reason}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </motion.button>
         ))}

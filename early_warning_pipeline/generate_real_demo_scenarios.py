@@ -169,8 +169,24 @@ def main():
             seq_rows = grp.tail(SEQ_LEN).copy()
             # If we shifted, we should ideally shift the features, but for demo simpler to just shift outputs
             input_seq = seq_rows[[c for c in grp.columns if c not in exclude_cols]].to_dict('records')
-            preds_df = predict_next_grid(model, scaler, label_encoder, input_seq, feature_names_path=FEATNAMES_PKL, centroids_path=CENTROIDS_CSV)
+            preds_df, context = predict_next_grid(model, scaler, label_encoder, input_seq, feature_names_path=FEATNAMES_PKL, centroids_path=CENTROIDS_CSV)
             
+            # Helper for reasoning in scenarios
+            def get_reasoning(ctx, p):
+                reasons = []
+                ndvi = ctx.get('ndvi', 0)
+                cropland = ctx.get('cropland_pct', 0)
+                v_dist = ctx.get('village_distance_m', 10000)
+                speed = ctx.get('step_dist_m', 0)
+
+                if ndvi > 0.4: reasons.append(f"High vegetation density (NDVI: {ndvi:.2f}) observed.")
+                if cropland > 8: reasons.append(f"High cropland concentration ({cropland:.1f}%) detected.")
+                if v_dist < 2000: reasons.append(f"Proximity to settlements ({v_dist/1000.0:.1f} km) increases risk.")
+                if speed > 1500: reasons.append("High velocity suggests migratory behavior.")
+                if p > 0.5: reasons.append("High model confidence based on trajectory consistency.")
+                if not reasons: reasons.append("Predicted based on historical migration patterns.")
+                return reasons
+
             preds_out = []
             for _, pr in preds_df.iterrows():
                 plat, plon = resolve_latlon(str(pr['grid_id']), grid_wgs84, centroid_map)
@@ -178,7 +194,8 @@ def main():
                 preds_out.append({
                     "rank": int(pr['rank']), "gridCell": str(pr['grid_id']), "confidence": round(float(pr['probability'])*100, 2),
                     "location": {"lat": round(plat, 5), "lng": round(plon, 5)},
-                    "distanceKm": round(((plat-cur_lat)**2 + (plon-cur_lon)**2)**0.5 * 111.0, 1)
+                    "distanceKm": round(((plat-cur_lat)**2 + (plon-cur_lon)**2)**0.5 * 111.0, 1),
+                    "reasoning": get_reasoning(context, float(pr['probability']))
                 })
 
             # History

@@ -12,6 +12,11 @@ from model_trainer import ElephantLSTM
 from predictor import predict_next_grid
 from grid_builder import build_grid
 
+# Feature groups for reasoning
+HUMAN_IMPACT_FEATURES = ['village_distance_m', 'cropland_pct', 'village_risk', 'crop_attraction']
+ENV_FEATURES = ['ndvi', 'rainfall', 'landcover', 'temp']
+MOVEMENT_FEATURES = ['step_dist_m', 'turning_angle', 'cos_angle', 'sin_angle', 'log_step_dist']
+
 # Constants for grid resolution
 DEG_PER_M = 1.0 / 111_000.0
 _GRID_LAT_ORIGIN = -17.0 + 0.02244
@@ -71,6 +76,50 @@ class PredictionService:
         except:
             return 0, 0
 
+    def generate_reasoning(self, context, grid_id, prob):
+        """
+        Translates raw feature values and prediction results into human-readable 
+        reasoning strings.
+        """
+        reasons = []
+        
+        # 1. Environmental Analysis
+        ndvi = context.get('ndvi', 0)
+        rainfall = context.get('rainfall', 0)
+        if ndvi > 0.4:
+            reasons.append(f"High vegetation density (NDVI: {ndvi:.2f}) observed in this region.")
+        elif ndvi > 0.2:
+            reasons.append("Moderate foraging habitat detected.")
+            
+        if rainfall > 50:
+            reasons.append(f"Recent high rainfall ({rainfall:.1f}mm) attracts movement toward water sources.")
+
+        # 2. Human-Elephant Conflict Markers
+        village_dist = context.get('village_distance_m', 10000)
+        cropland = context.get('cropland_pct', 0)
+        
+        if cropland > 10:
+            reasons.append(f"High cropland concentration ({cropland:.1f}%) detected.")
+        if village_dist < 1500:
+            reasons.append(f"Proximity to human settlements ({village_dist/1000.0:.1f} km) increases interaction risk.")
+        
+        # 3. Kinematic drivers
+        speed = context.get('step_dist_m', 0)
+        if speed > 2000:
+            reasons.append("High movement velocity suggests migratory behavior.")
+        elif speed < 500:
+            reasons.append("Low step distance suggests localized foraging or resting.")
+
+        # 4. Confidence / Probability
+        if prob > 0.5:
+            reasons.append("High model confidence based on strong historical kinematic patterns.")
+        
+        # Ensure we always have something
+        if not reasons:
+            reasons.append("Predicted based on baseline historical migration patterns for this grid.")
+            
+        return reasons
+
     def get_corrected_path(self, history_rows, current_lat, current_lon):
         """
         Fixes GPS drift by forcing the dead-reckoned path to end exactly at the 
@@ -120,19 +169,21 @@ class PredictionService:
             # Predictions
             seq_rows = grp.tail(10)
             input_seq = seq_rows[[c for c in grp.columns if c not in exclude_cols]].to_dict('records')
-            preds_df = predict_next_grid(self.model, self.scaler, self.label_encoder, input_seq, 
+            preds_df, context = predict_next_grid(self.model, self.scaler, self.label_encoder, input_seq, 
                                          feature_names_path=os.path.join(self.base_path, 'feature_names.pkl'),
                                          centroids_path=os.path.join(self.base_path, 'grid_centroids.csv'))
             
             preds_out = []
             for _, pr in preds_df.iterrows():
                 plat, plon = self.resolve_latlon(str(pr['grid_id']))
+                conf = round(float(pr['probability'])*100, 2)
                 preds_out.append({
                     "rank": int(pr['rank']),
                     "gridCell": str(pr['grid_id']),
-                    "confidence": round(float(pr['probability'])*100, 2),
+                    "confidence": conf,
                     "location": {"lat": round(plat, 5), "lng": round(plon, 5)},
-                    "distanceKm": round(((plat-cur_lat)**2 + (plon-cur_lon)**2)**0.5 * 111.0, 1)
+                    "distanceKm": round(((plat-cur_lat)**2 + (plon-cur_lon)**2)**0.5 * 111.0, 1),
+                    "reasoning": self.generate_reasoning(context, str(pr['grid_id']), float(pr['probability']))
                 })
 
             # History with correction

@@ -21,6 +21,7 @@ export interface Prediction {
   confidence: number;
   location: { lat: number; lng: number };
   distanceKm: number;
+  reasoning?: string[];
 }
 
 export interface Village {

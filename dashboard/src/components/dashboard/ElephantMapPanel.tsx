@@ -240,11 +240,30 @@ const ElephantMapPanel = ({
       {/* ── Legend */}
       <div className="flex items-center gap-4 px-5 py-1.5 border-b border-border bg-card/50 flex-wrap">
         {predictions.slice(0, 5).map((p, i) => (
-          <div key={p.gridCell} className="flex items-center gap-1">
-            <span className="h-2 w-2 rounded-sm flex-shrink-0" style={{ background: RANK_COLORS[i] }} />
-            <span className="text-[10px] text-muted-foreground font-mono">
-              #{p.rank} {p.gridCell} <span className="text-foreground">{p.confidence.toFixed(1)}%</span>
-            </span>
+          <div key={p.gridCell} className="flex flex-col gap-1">
+            <div className="flex items-center gap-1">
+              <span className="h-2 w-2 rounded-sm flex-shrink-0" style={{ background: RANK_COLORS[i] }} />
+              <span className="text-[10px] text-muted-foreground font-mono">
+                #{p.rank} {p.gridCell} <span className="text-foreground">{p.confidence.toFixed(1)}%</span>
+              </span>
+            </div>
+            <div className="flex flex-col gap-1">
+              <div className="flex justify-between items-center">
+                <div className="text-xs font-mono text-muted-foreground">
+                  {p.location.lat.toFixed(4)}, {p.location.lng.toFixed(4)} | {p.distanceKm} km away
+                </div>
+              </div>
+              {p.reasoning && p.reasoning.length > 0 && (
+                <div className="mt-2 text-[10px] space-y-1">
+                  {p.reasoning.map((reason, idx) => (
+                    <div key={idx} className="flex gap-2 text-muted-foreground/80 leading-tight">
+                      <div className="w-1 h-1 rounded-full bg-blue-400 mt-1 shrink-0" />
+                      <span>{reason}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         ))}
       </div>

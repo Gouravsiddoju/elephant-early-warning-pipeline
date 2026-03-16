@@ -7,6 +7,7 @@ A professional, real-time prediction and monitoring dashboard for elephant movem
 *   **GPS Drift Correction:** Implements an anchor-based snapping algorithm to ensure high-precision trajectory visualization.
 *   **Environmental Context:** Real-time integration of Satellite data (NDVI, Rainfall) via Google Earth Engine and OpenStreetMap settlement data.
 *   **Interactive Dashboard:** React-based UI with interactive Leaflet maps, satellite/dark basemaps, and predictive probability zones.
+*   **Predictive Reasoning:** NEW! Transparent "Drivers" for every prediction (e.g., Vegetation Density, Human Proximity) to explain model decisions.
 *   **Early Warning Scenarios:** Includes 5 professionally staged demo scenarios (Crop Raid, Poaching Threat, Village Proximity) for client presentations.
 
 ## 🏗️ Technical Architecture

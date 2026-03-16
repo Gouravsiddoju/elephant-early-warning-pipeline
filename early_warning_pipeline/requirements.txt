@@ -13,3 +13,6 @@ scipy
 tqdm
 torch>=2.1.0
 pyproj
+fastapi
+uvicorn
+python-multipart

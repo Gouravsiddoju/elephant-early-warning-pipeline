@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-13 11:28 UTC",
+  "generatedAt": "2026-03-16 06:33 UTC",
   "elephants": [
     {
       "id": "E-1",
@@ -11,7 +11,7 @@
       },
       "horizon": 48,
       "model": "LSTM (PyTorch)",
-      "lastUpdated": "2026-03-13 11:28 UTC",
+      "lastUpdated": "2026-03-16 06:33 UTC",
       "status": "safe"
     },
     {
@@ -24,7 +24,7 @@
       },
       "horizon": 48,
       "model": "LSTM (PyTorch)",
-      "lastUpdated": "2026-03-13 11:28 UTC",
+      "lastUpdated": "2026-03-16 06:33 UTC",
       "status": "safe"
     },
     {
@@ -37,7 +37,7 @@
       },
       "horizon": 48,
       "model": "LSTM (PyTorch)",
-      "lastUpdated": "2026-03-13 11:28 UTC",
+      "lastUpdated": "2026-03-16 06:33 UTC",
       "status": "safe"
     },
     {
@@ -50,7 +50,7 @@
       },
       "horizon": 48,
       "model": "LSTM (PyTorch)",
-      "lastUpdated": "2026-03-13 11:28 UTC",
+      "lastUpdated": "2026-03-16 06:33 UTC",
       "status": "safe"
     },
     {
@@ -63,7 +63,7 @@
       },
       "horizon": 48,
       "model": "LSTM (PyTorch)",
-      "lastUpdated": "2026-03-13 11:28 UTC",
+      "lastUpdated": "2026-03-16 06:33 UTC",
       "status": "danger"
     },
     {
@@ -76,7 +76,7 @@
       },
       "horizon": 48,
       "model": "LSTM (PyTorch)",
-      "lastUpdated": "2026-03-13 11:28 UTC",
+      "lastUpdated": "2026-03-16 06:33 UTC",
       "status": "safe"
     },
     {
@@ -89,7 +89,7 @@
       },
       "horizon": 48,
       "model": "LSTM (PyTorch)",
-      "lastUpdated": "2026-03-13 11:28 UTC",
+      "lastUpdated": "2026-03-16 06:33 UTC",
       "status": "safe"
     },
     {
@@ -102,7 +102,7 @@
       },
       "horizon": 48,
       "model": "LSTM (PyTorch)",
-      "lastUpdated": "2026-03-13 11:28 UTC",
+      "lastUpdated": "2026-03-16 06:33 UTC",
       "status": "danger"
     }
   ],
@@ -116,7 +116,11 @@
           "lat": -18.54836,
           "lng": 30.65204
         },
-        "distanceKm": 468.8
+        "distanceKm": 468.8,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed.",
+          "High model confidence based on trajectory consistency."
+        ]
       },
       {
         "rank": 2,
@@ -126,7 +130,10 @@
           "lat": -18.72788,
           "lng": 30.92132
         },
-        "distanceKm": 473.5
+        "distanceKm": 473.5,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       },
       {
         "rank": 3,
@@ -136,7 +143,10 @@
           "lat": -18.63812,
           "lng": 30.83156
         },
-        "distanceKm": 474.1
+        "distanceKm": 474.1,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       },
       {
         "rank": 4,
@@ -146,7 +156,10 @@
           "lat": -18.683,
           "lng": 30.83156
         },
-        "distanceKm": 470.4
+        "distanceKm": 470.4,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       },
       {
         "rank": 5,
@@ -156,7 +169,10 @@
           "lat": -18.63812,
           "lng": 30.33788
         },
-        "distanceKm": 439.6
+        "distanceKm": 439.6,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       }
     ],
     "E-2": [
@@ -168,7 +184,11 @@
           "lat": -21.7858,
           "lng": 25.3401
         },
-        "distanceKm": 81.0
+        "distanceKm": 81.0,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed.",
+          "High model confidence based on trajectory consistency."
+        ]
       },
       {
         "rank": 2,
@@ -178,7 +198,10 @@
           "lat": -21.72312,
           "lng": 25.96521
         },
-        "distanceKm": 18.5
+        "distanceKm": 18.5,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       },
       {
         "rank": 3,
@@ -188,7 +211,10 @@
           "lat": -21.46556,
           "lng": 30.60716
         },
-        "distanceKm": 505.9
+        "distanceKm": 505.9,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       },
       {
         "rank": 4,
@@ -198,7 +224,10 @@
           "lat": -21.42068,
           "lng": 30.60716
         },
-        "distanceKm": 506.3
+        "distanceKm": 506.3,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       },
       {
         "rank": 5,
@@ -208,7 +237,10 @@
           "lat": -21.76667,
           "lng": 26.01494
         },
-        "distanceKm": 11.4
+        "distanceKm": 11.4,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       }
     ],
     "E-4": [
@@ -220,7 +252,11 @@
           "lat": -18.95228,
           "lng": 28.36316
         },
-        "distanceKm": 0.0
+        "distanceKm": 0.0,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed.",
+          "High model confidence based on trajectory consistency."
+        ]
       },
       {
         "rank": 2,
@@ -230,7 +266,10 @@
           "lat": -18.86252,
           "lng": 28.40804
         },
-        "distanceKm": 11.1
+        "distanceKm": 11.1,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       },
       {
         "rank": 3,
@@ -240,7 +279,10 @@
           "lat": -18.81764,
           "lng": 28.36316
         },
-        "distanceKm": 14.9
+        "distanceKm": 14.9,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       },
       {
         "rank": 4,
@@ -250,7 +292,10 @@
           "lat": -18.81764,
           "lng": 28.40804
         },
-        "distanceKm": 15.8
+        "distanceKm": 15.8,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       },
       {
         "rank": 5,
@@ -260,7 +305,10 @@
           "lat": -18.9074,
           "lng": 28.40804
         },
-        "distanceKm": 7.0
+        "distanceKm": 7.0,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       }
     ],
     "E-8": [
@@ -272,7 +320,10 @@
           "lat": -22.58756,
           "lng": 25.40108
         },
-        "distanceKm": 400.9
+        "distanceKm": 400.9,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       },
       {
         "rank": 2,
@@ -282,7 +333,10 @@
           "lat": -22.54268,
           "lng": 25.40108
         },
-        "distanceKm": 396.7
+        "distanceKm": 396.7,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       },
       {
         "rank": 3,
@@ -292,7 +346,10 @@
           "lat": -22.54268,
           "lng": 25.3562
         },
-        "distanceKm": 394.0
+        "distanceKm": 394.0,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       },
       {
         "rank": 4,
@@ -302,7 +359,10 @@
           "lat": -19.08692,
           "lng": 28.00412
         },
-        "distanceKm": 511.5
+        "distanceKm": 511.5,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       },
       {
         "rank": 5,
@@ -312,7 +372,10 @@
           "lat": -19.17159,
           "lng": 26.92623
         },
-        "distanceKm": 391.6
+        "distanceKm": 391.6,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       }
     ],
     "E-5": [
@@ -324,7 +387,10 @@
           "lat": -19.49742,
           "lng": 27.88636
         },
-        "distanceKm": 101.3
+        "distanceKm": 101.3,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       },
       {
         "rank": 2,
@@ -334,7 +400,10 @@
           "lat": -19.40108,
           "lng": 28.00412
         },
-        "distanceKm": 118.1
+        "distanceKm": 118.1,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       },
       {
         "rank": 3,
@@ -344,7 +413,10 @@
           "lat": -19.44596,
           "lng": 28.049
         },
-        "distanceKm": 118.4
+        "distanceKm": 118.4,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       },
       {
         "rank": 4,
@@ -354,7 +426,10 @@
           "lat": -19.44596,
           "lng": 28.00412
         },
-        "distanceKm": 114.7
+        "distanceKm": 114.7,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       },
       {
         "rank": 5,
@@ -364,7 +439,10 @@
           "lat": -19.49084,
           "lng": 28.049
         },
-        "distanceKm": 115.1
+        "distanceKm": 115.1,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       }
     ],
     "E-6": [
@@ -376,7 +454,11 @@
           "lat": -18.01401,
           "lng": 26.50983
         },
-        "distanceKm": 361.9
+        "distanceKm": 361.9,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed.",
+          "High model confidence based on trajectory consistency."
+        ]
       },
       {
         "rank": 2,
@@ -386,7 +468,10 @@
           "lat": -18.25563,
           "lng": 25.90459
         },
-        "distanceKm": 424.5
+        "distanceKm": 424.5,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       },
       {
         "rank": 3,
@@ -396,7 +481,10 @@
           "lat": -18.06298,
           "lng": 26.37014
         },
-        "distanceKm": 376.1
+        "distanceKm": 376.1,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       },
       {
         "rank": 4,
@@ -406,7 +494,10 @@
           "lat": -18.10665,
           "lng": 26.41856
         },
-        "distanceKm": 370.0
+        "distanceKm": 370.0,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       },
       {
         "rank": 5,
@@ -416,7 +507,10 @@
           "lat": -18.01535,
           "lng": 26.46281
         },
-        "distanceKm": 367.0
+        "distanceKm": 367.0,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       }
     ],
     "E-7": [
@@ -428,7 +522,11 @@
           "lat": -19.1762,
           "lng": 28.06196
         },
-        "distanceKm": 65.0
+        "distanceKm": 65.0,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed.",
+          "High model confidence based on trajectory consistency."
+        ]
       },
       {
         "rank": 2,
@@ -438,7 +536,10 @@
           "lat": -19.13317,
           "lng": 28.01286
         },
-        "distanceKm": 59.8
+        "distanceKm": 59.8,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       },
       {
         "rank": 3,
@@ -448,7 +549,10 @@
           "lat": -19.13136,
           "lng": 28.06004
         },
-        "distanceKm": 60.0
+        "distanceKm": 60.0,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       },
       {
         "rank": 4,
@@ -458,7 +562,10 @@
           "lat": -19.17437,
           "lng": 28.10915
         },
-        "distanceKm": 65.7
+        "distanceKm": 65.7,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       },
       {
         "rank": 5,
@@ -468,7 +575,10 @@
           "lat": -19.14031,
           "lng": 27.82407
         },
-        "distanceKm": 63.3
+        "distanceKm": 63.3,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       }
     ],
     "E-11": [
@@ -480,7 +590,11 @@
           "lat": -17.25403,
           "lng": 27.79747
         },
-        "distanceKm": 308.9
+        "distanceKm": 308.9,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed.",
+          "High model confidence based on trajectory consistency."
+        ]
       },
       {
         "rank": 2,
@@ -490,7 +604,10 @@
           "lat": -18.99716,
           "lng": 30.0686
         },
-        "distanceKm": 14.9
+        "distanceKm": 14.9,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       },
       {
         "rank": 3,
@@ -500,7 +617,10 @@
           "lat": -21.73484,
           "lng": 30.60716
         },
-        "distanceKm": 324.4
+        "distanceKm": 324.4,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       },
       {
         "rank": 4,
@@ -510,7 +630,10 @@
           "lat": -17.60109,
           "lng": 26.77876
         },
-        "distanceKm": 391.1
+        "distanceKm": 391.1,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       },
       {
         "rank": 5,
@@ -520,7 +643,10 @@
           "lat": -17.51116,
           "lng": 26.7759
         },
-        "distanceKm": 395.1
+        "distanceKm": 395.1,
+        "reasoning": [
+          "High vegetation density (NDVI: 0.50) observed."
+        ]
       }
     ]
   },
@@ -537,7 +663,7 @@
   "alertEvents": [
     {
       "id": "alert_4_1",
-      "timestamp": "2026-03-13 11:28 UTC",
+      "timestamp": "2026-03-16 06:33 UTC",
       "type": "prediction",
       "severity": "low",
       "message": "Elephant 1 is in a safe designated area.",
@@ -545,7 +671,7 @@
     },
     {
       "id": "alert_4_2",
-      "timestamp": "2026-03-13 11:28 UTC",
+      "timestamp": "2026-03-16 06:33 UTC",
       "type": "prediction",
       "severity": "low",
       "message": "Elephant 2 is in a safe designated area.",
@@ -553,7 +679,7 @@
     },
     {
       "id": "alert_4_4",
-      "timestamp": "2026-03-13 11:28 UTC",
+      "timestamp": "2026-03-16 06:33 UTC",
       "type": "prediction",
       "severity": "low",
       "message": "Elephant 4 is in a safe designated area.",
@@ -561,7 +687,7 @@
     },
     {
       "id": "alert_4_8",
-      "timestamp": "2026-03-13 11:28 UTC",
+      "timestamp": "2026-03-16 06:33 UTC",
       "type": "prediction",
       "severity": "low",
       "message": "Elephant 8 is in a safe designated area.",
@@ -569,7 +695,7 @@
     },
     {
       "id": "alert_4_5",
-      "timestamp": "2026-03-13 11:28 UTC",
+      "timestamp": "2026-03-16 06:33 UTC",
       "type": "movement",
       "severity": "high",
       "message": "\ud83d\udea8 Erratic movement detected for Elephant 5 \u2014 possible poaching threat",
@@ -577,7 +703,7 @@
     },
     {
       "id": "alert_4_6",
-      "timestamp": "2026-03-13 11:28 UTC",
+      "timestamp": "2026-03-16 06:33 UTC",
       "type": "prediction",
       "severity": "low",
       "message": "Elephant 6 is in a safe designated area.",
@@ -585,7 +711,7 @@
     },
     {
       "id": "alert_4_7",
-      "timestamp": "2026-03-13 11:28 UTC",
+      "timestamp": "2026-03-16 06:33 UTC",
       "type": "prediction",
       "severity": "low",
       "message": "Elephant 7 is in a safe designated area.",
@@ -593,7 +719,7 @@
     },
     {
       "id": "alert_4_11",
-      "timestamp": "2026-03-13 11:28 UTC",
+      "timestamp": "2026-03-16 06:33 UTC",
       "type": "movement",
       "severity": "high",
       "message": "\ud83d\udea8 Erratic movement detected for Elephant 11 \u2014 possible poaching threat",
@@ -1012,103 +1138,103 @@
     "E-5": [
       {
         "hour": "22:00",
-        "distance": 0.044
+        "distance": 0.051
       },
       {
         "hour": "23:00",
-        "distance": 0.142
+        "distance": 0.163
       },
       {
         "hour": "00:00",
-        "distance": 0.209
+        "distance": 0.24
       },
       {
         "hour": "01:00",
-        "distance": 0.235
+        "distance": 0.27
       },
       {
         "hour": "02:00",
-        "distance": 0.201
+        "distance": 0.231
       },
       {
         "hour": "03:00",
-        "distance": 0.206
+        "distance": 0.237
       },
       {
         "hour": "04:00",
-        "distance": 0.038
+        "distance": 0.044
       },
       {
         "hour": "05:00",
-        "distance": 0.999
+        "distance": 1.148
       },
       {
         "hour": "06:00",
-        "distance": 2.715
+        "distance": 3.118
       },
       {
         "hour": "07:00",
-        "distance": 0.622
+        "distance": 0.715
       },
       {
         "hour": "08:00",
-        "distance": 0.383
+        "distance": 0.44
       },
       {
         "hour": "09:00",
-        "distance": 0.383
+        "distance": 0.44
       },
       {
         "hour": "10:00",
-        "distance": 0.383
+        "distance": 0.44
       },
       {
         "hour": "11:00",
-        "distance": 0.013
+        "distance": 0.015
       },
       {
         "hour": "12:00",
-        "distance": 0.167
+        "distance": 0.191
       },
       {
         "hour": "13:00",
-        "distance": 0.61
+        "distance": 0.7
       },
       {
         "hour": "14:00",
-        "distance": 0.776
+        "distance": 0.891
       },
       {
         "hour": "15:00",
-        "distance": 2.778
+        "distance": 3.19
       },
       {
         "hour": "16:00",
-        "distance": 4.329
+        "distance": 4.973
       },
       {
         "hour": "17:00",
-        "distance": 4.0
+        "distance": 4.594
       },
       {
         "hour": "18:00",
-        "distance": 2.408
+        "distance": 2.766
       },
       {
         "hour": "19:00",
-        "distance": 2.971
+        "distance": 3.413
       },
       {
         "hour": "20:00",
-        "distance": 2.464
+        "distance": 2.831
       },
       {
         "hour": "21:00",
-        "distance": 1.94
+        "distance": 2.228
       },
       {
         "hour": "22:00",
-        "distance": 4.247
+        "distance": 4.879
       }
     ],
     "E-6": [
@@ -1318,67 +1444,67 @@
     "E-11": [
       {
         "hour": "22:00",
-        "distance": 6.996
+        "distance": 3.924
       },
       {
         "hour": "23:00",
-        "distance": 3.636
+        "distance": 2.039
       },
       {
         "hour": "00:00",
-        "distance": 0.066
+        "distance": 0.037
       },
       {
         "hour": "01:00",
-        "distance": 0.055
+        "distance": 0.031
       },
       {
         "hour": "02:00",
-        "distance": 0.061
+        "distance": 0.034
       },
       {
         "hour": "03:00",
-        "distance": 0.025
+        "distance": 0.014
       },
       {
         "hour": "04:00",
-        "distance": 6.778
+        "distance": 3.801
       },
       {
         "hour": "05:00",
-        "distance": 4.612
+        "distance": 2.586
       },
       {
         "hour": "06:00",
-        "distance": 7.309
+        "distance": 4.099
       },
       {
         "hour": "07:00",
-        "distance": 1.84
+        "distance": 1.032
       },
       {
         "hour": "08:00",
-        "distance": 3.01
+        "distance": 1.688
       },
       {
         "hour": "09:00",
-        "distance": 4.429
+        "distance": 2.484
       },
       {
         "hour": "10:00",
-        "distance": 3.849
+        "distance": 2.158
       },
       {
         "hour": "11:00",
-        "distance": 2.562
+        "distance": 1.437
       },
       {
         "hour": "12:00",
-        "distance": 2.193
+        "distance": 1.23
       },
       {
         "hour": "13:00",
-        "distance": 2.193
+        "distance": 1.23
       },
       {
         "hour": "14:00",
@@ -1390,31 +1516,31 @@
       },
       {
         "hour": "16:00",
-        "distance": 4.261
+        "distance": 2.389
       },
       {
         "hour": "17:00",
-        "distance": 4.261
+        "distance": 2.389
       },
       {
         "hour": "18:00",
-        "distance": 4.261
+        "distance": 2.389
       },
       {
         "hour": "19:00",
-        "distance": 4.261
+        "distance": 2.389
       },
       {
         "hour": "20:00",
-        "distance": 4.261
+        "distance": 2.389
       },
       {
         "hour": "21:00",
-        "distance": 4.261
+        "distance": 2.389
       },
       {
         "hour": "22:00",
-        "distance": 4.261
+        "distance": 2.389
       }
     ]
   },
@@ -1849,104 +1975,104 @@
         27.24825
       ],
       [
-        -20.15028,
-        27.24784
+        -20.15027,
+        27.24777
       ],
       [
         -20.15038,
-        27.2492
+        27.24933
       ],
       [
-        -20.14973,
-        27.25108
+        -20.14964,
+        27.25149
       ],
       [
-        -20.15017,
-        27.25329
+        -20.15014,
+        27.25403
       ],
       [
-        -20.14841,
-        27.25374
+        -20.14812,
+        27.25455
       ],
       [
-        -20.14739,
-        27.25209
+        -20.14694,
+        27.25265
       ],
       [
-        -20.1477,
-        27.25226
+        -20.14729,
+        27.25284
       ],
       [
-        -20.15611,
-        27.25568
+        -20.15695,
+        27.25676
       ],
       [
-        -20.17735,
-        27.24276
+        -20.18134,
+        27.24192
       ],
       [
-        -20.18265,
-        27.24473
+        -20.18742,
+        27.24418
       ],
       [
-        -20.1861,
-        27.24492
+        -20.19138,
+        27.2444
       ],
       [
-        -20.18271,
-        27.24421
+        -20.18749,
+        27.24359
       ],
       [
-        -20.1861,
-        27.24491
+        -20.19138,
+        27.2444
       ],
       [
-        -20.18607,
-        27.24503
+        -20.19134,
+        27.24454
       ],
       [
-        -20.18642,
-        27.24348
+        -20.19174,
+        27.24275
       ],
       [
-        -20.19145,
-        27.24583
+        -20.19752,
+        27.24545
       ],
       [
-        -20.19725,
-        27.24167
+        -20.20418,
+        27.24068
       ],
       [
-        -20.21611,
-        27.2592
+        -20.22584,
+        27.26081
       ],
       [
-        -20.24012,
-        27.22645
+        -20.25342,
+        27.22319
       ],
       [
-        -20.25039,
-        27.18964
+        -20.26522,
+        27.1809
       ],
       [
-        -20.23077,
-        27.19951
+        -20.24268,
+        27.19224
       ],
       [
-        -20.20441,
-        27.20448
+        -20.21241,
+        27.19795
       ],
       [
-        -20.18472,
-        27.21541
+        -20.18979,
+        27.21051
       ],
       [
-        -20.16729,
-        27.21668
+        -20.16977,
+        27.21197
       ],
       [
-        -20.12947,
-        27.22285
+        -20.12633,
+        27.21906
       ]
     ],
     "E-6": [
@@ -2167,104 +2293,104 @@
         30.0686
       ],
       [
-        -18.80055,
-        30.05645
+        -18.82777,
+        30.06178
       ],
       [
-        -18.76799,
-        30.06022
+        -18.80951,
+        30.06389
       ],
       [
-        -18.76756,
-        30.05979
+        -18.80927,
+        30.06365
       ],
       [
-        -18.76773,
-        30.06028
+        -18.80936,
+        30.06392
       ],
       [
-        -18.76826,
-        30.06013
+        -18.80966,
+        30.06383
       ],
       [
-        -18.76813,
-        30.06032
+        -18.80958,
+        30.06394
       ],
       [
-        -18.71997,
-        30.09996
+        -18.78257,
+        30.08618
       ],
       [
-        -18.67842,
-        30.10039
+        -18.75927,
+        30.08642
       ],
       [
-        -18.61361,
-        30.11269
+        -18.72292,
+        30.09332
       ],
       [
-        -18.62669,
-        30.12344
+        -18.73026,
+        30.09935
       ],
       [
-        -18.65096,
-        30.13619
+        -18.74387,
+        30.1065
       ],
       [
-        -18.68011,
-        30.16494
+        -18.76022,
+        30.12263
       ],
       [
-        -18.70172,
-        30.19356
+        -18.77234,
+        30.13869
       ],
       [
-        -18.71799,
-        30.21085
+        -18.78146,
+        30.14839
       ],
       [
-        -18.73574,
-        30.22002
+        -18.79141,
+        30.15354
       ],
       [
-        -18.7411,
-        30.19994
+        -18.79441,
+        30.14227
       ],
       [
-        -18.7411,
-        30.19994
+        -18.79441,
+        30.14227
       ],
       [
-        -18.7411,
-        30.19994
+        -18.79441,
+        30.14227
       ],
       [
-        -18.742,
-        30.15942
+        -18.79492,
+        30.11954
       ],
       [
-        -18.70365,
-        30.16127
+        -18.77342,
+        30.12058
       ],
       [
-        -18.70806,
-        30.20153
+        -18.77589,
+        30.14317
       ],
       [
-        -18.7458,
-        30.1941
+        -18.79705,
+        30.139
       ],
       [
-        -18.73617,
-        30.15486
+        -18.79165,
+        30.11699
       ],
       [
-        -18.69977,
-        30.16773
+        -18.77124,
+        30.12421
       ],
       [
-        -18.71445,
-        30.20518
+        -18.77947,
+        30.14522
       ]
     ]
   }
