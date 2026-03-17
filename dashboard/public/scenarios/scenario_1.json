@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-17 08:22 UTC",
+  "generatedAt": "2026-03-17 08:32 UTC",
   "elephants": [
     {
       "id": "E-1",
@@ -11,7 +11,7 @@
       },
       "horizon": 48,
       "model": "LSTM (PyTorch)",
-      "lastUpdated": "2026-03-17 08:22 UTC",
+      "lastUpdated": "2026-03-17 08:32 UTC",
       "status": "safe"
     },
     {
@@ -24,7 +24,7 @@
       },
       "horizon": 48,
       "model": "LSTM (PyTorch)",
-      "lastUpdated": "2026-03-17 08:22 UTC",
+      "lastUpdated": "2026-03-17 08:32 UTC",
       "status": "safe"
     },
     {
@@ -37,7 +37,7 @@
       },
       "horizon": 48,
       "model": "LSTM (PyTorch)",
-      "lastUpdated": "2026-03-17 08:22 UTC",
+      "lastUpdated": "2026-03-17 08:32 UTC",
       "status": "safe"
     },
     {
@@ -50,7 +50,7 @@
       },
       "horizon": 48,
       "model": "LSTM (PyTorch)",
-      "lastUpdated": "2026-03-17 08:22 UTC",
+      "lastUpdated": "2026-03-17 08:32 UTC",
       "status": "safe"
     },
     {
@@ -63,7 +63,7 @@
       },
       "horizon": 48,
       "model": "LSTM (PyTorch)",
-      "lastUpdated": "2026-03-17 08:22 UTC",
+      "lastUpdated": "2026-03-17 08:32 UTC",
       "status": "safe"
     },
     {
@@ -76,7 +76,7 @@
       },
       "horizon": 48,
       "model": "LSTM (PyTorch)",
-      "lastUpdated": "2026-03-17 08:22 UTC",
+      "lastUpdated": "2026-03-17 08:32 UTC",
       "status": "safe"
     },
     {
@@ -89,7 +89,7 @@
       },
       "horizon": 48,
       "model": "LSTM (PyTorch)",
-      "lastUpdated": "2026-03-17 08:22 UTC",
+      "lastUpdated": "2026-03-17 08:32 UTC",
       "status": "safe"
     },
     {
@@ -102,7 +102,7 @@
       },
       "horizon": 48,
       "model": "LSTM (PyTorch)",
-      "lastUpdated": "2026-03-17 08:22 UTC",
+      "lastUpdated": "2026-03-17 08:32 UTC",
       "status": "safe"
     }
   ],
@@ -118,8 +118,9 @@
         },
         "distanceKm": 45.3,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected.",
-          "\ud83c\udfaf Prediction Score: 83/100. Highly confident model trajectory."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 90.2 km from known settlements.",
+          "\ud83c\udfaf Prediction: 83/100. High spatial consistency with verified migration corridors."
         ]
       },
       {
@@ -132,7 +133,8 @@
         },
         "distanceKm": 85.7,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 90.2 km from known settlements."
         ]
       },
       {
@@ -145,7 +147,8 @@
         },
         "distanceKm": 34.0,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 90.2 km from known settlements."
         ]
       },
       {
@@ -158,7 +161,8 @@
         },
         "distanceKm": 59.1,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 90.2 km from known settlements."
         ]
       },
       {
@@ -171,7 +175,8 @@
         },
         "distanceKm": 41.4,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 90.2 km from known settlements."
         ]
       }
     ],
@@ -186,8 +191,9 @@
         },
         "distanceKm": 5.3,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected.",
-          "\ud83c\udfaf Prediction Score: 93/100. Highly confident model trajectory."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 25.6 km from known settlements.",
+          "\ud83c\udfaf Prediction: 93/100. High spatial consistency with verified migration corridors."
         ]
       },
       {
@@ -200,7 +206,8 @@
         },
         "distanceKm": 0.0,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 25.6 km from known settlements."
         ]
       },
       {
@@ -213,7 +220,8 @@
         },
         "distanceKm": 7.3,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 25.6 km from known settlements."
         ]
       },
       {
@@ -226,7 +234,8 @@
         },
         "distanceKm": 5.0,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 25.6 km from known settlements."
         ]
       },
       {
@@ -239,7 +248,8 @@
         },
         "distanceKm": 32.0,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 25.6 km from known settlements."
         ]
       }
     ],
@@ -254,9 +264,9 @@
         },
         "distanceKm": 0.0,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected.",
-          "\ud83d\udea8 Conflict Risk: CRITICAL. Settlement proximity is 0.0 km.",
-          "\ud83c\udfaf Prediction Score: 99/100. Highly confident model trajectory."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udea8 Conflict Risk: CRITICAL. Human settlement at 0.0 km. Immediate action required.",
+          "\ud83c\udfaf Prediction: 99/100. High spatial consistency with verified migration corridors."
         ]
       },
       {
@@ -269,8 +279,8 @@
         },
         "distanceKm": 5.2,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected.",
-          "\ud83d\udea8 Conflict Risk: CRITICAL. Settlement proximity is 0.0 km."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udea8 Conflict Risk: CRITICAL. Human settlement at 0.0 km. Immediate action required."
         ]
       },
       {
@@ -283,8 +293,8 @@
         },
         "distanceKm": 5.0,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected.",
-          "\ud83d\udea8 Conflict Risk: CRITICAL. Settlement proximity is 0.0 km."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udea8 Conflict Risk: CRITICAL. Human settlement at 0.0 km. Immediate action required."
         ]
       },
       {
@@ -297,8 +307,8 @@
         },
         "distanceKm": 5.0,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected.",
-          "\ud83d\udea8 Conflict Risk: CRITICAL. Settlement proximity is 0.0 km."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udea8 Conflict Risk: CRITICAL. Human settlement at 0.0 km. Immediate action required."
         ]
       },
       {
@@ -311,8 +321,8 @@
         },
         "distanceKm": 90.2,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected.",
-          "\ud83d\udea8 Conflict Risk: CRITICAL. Settlement proximity is 0.0 km."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udea8 Conflict Risk: CRITICAL. Human settlement at 0.0 km. Immediate action required."
         ]
       }
     ],
@@ -327,8 +337,9 @@
         },
         "distanceKm": 18.6,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected.",
-          "\ud83c\udfaf Prediction Score: 46/100. Highly confident model trajectory."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 14.9 km from known settlements.",
+          "\ud83c\udfaf Prediction: 46/100. High spatial consistency with verified migration corridors."
         ]
       },
       {
@@ -341,7 +352,8 @@
         },
         "distanceKm": 25.1,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 14.9 km from known settlements."
         ]
       },
       {
@@ -354,7 +366,8 @@
         },
         "distanceKm": 33.9,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 14.9 km from known settlements."
         ]
       },
       {
@@ -367,7 +380,8 @@
         },
         "distanceKm": 73.4,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 14.9 km from known settlements."
         ]
       },
       {
@@ -380,7 +394,8 @@
         },
         "distanceKm": 43.8,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 14.9 km from known settlements."
         ]
       }
     ],
@@ -395,8 +410,9 @@
         },
         "distanceKm": 53.3,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected.",
-          "\ud83c\udfaf Prediction Score: 99/100. Highly confident model trajectory."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 25.3 km from known settlements.",
+          "\ud83c\udfaf Prediction: 99/100. High spatial consistency with verified migration corridors."
         ]
       },
       {
@@ -409,7 +425,8 @@
         },
         "distanceKm": 70.1,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 25.3 km from known settlements."
         ]
       },
       {
@@ -422,7 +439,8 @@
         },
         "distanceKm": 48.8,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 25.3 km from known settlements."
         ]
       },
       {
@@ -435,7 +453,8 @@
         },
         "distanceKm": 70.3,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 25.3 km from known settlements."
         ]
       },
       {
@@ -448,7 +467,8 @@
         },
         "distanceKm": 56.0,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 25.3 km from known settlements."
         ]
       }
     ],
@@ -463,8 +483,9 @@
         },
         "distanceKm": 92.9,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected.",
-          "\ud83c\udfaf Prediction Score: 47/100. Highly confident model trajectory."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 58.4 km from known settlements.",
+          "\ud83c\udfaf Prediction: 47/100. High spatial consistency with verified migration corridors."
         ]
       },
       {
@@ -477,8 +498,9 @@
         },
         "distanceKm": 88.6,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected.",
-          "\ud83c\udfaf Prediction Score: 40/100. Highly confident model trajectory."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 58.4 km from known settlements.",
+          "\ud83c\udfaf Prediction: 40/100. High spatial consistency with verified migration corridors."
         ]
       },
       {
@@ -491,7 +513,8 @@
         },
         "distanceKm": 87.2,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 58.4 km from known settlements."
         ]
       },
       {
@@ -504,7 +527,8 @@
         },
         "distanceKm": 87.4,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 58.4 km from known settlements."
         ]
       },
       {
@@ -517,7 +541,8 @@
         },
         "distanceKm": 99.7,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 58.4 km from known settlements."
         ]
       }
     ],
@@ -532,8 +557,9 @@
         },
         "distanceKm": 20.0,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected.",
-          "\ud83c\udfaf Prediction Score: 99/100. Highly confident model trajectory."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 19.6 km from known settlements.",
+          "\ud83c\udfaf Prediction: 99/100. High spatial consistency with verified migration corridors."
         ]
       },
       {
@@ -546,7 +572,8 @@
         },
         "distanceKm": 15.9,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 19.6 km from known settlements."
         ]
       },
       {
@@ -559,7 +586,8 @@
         },
         "distanceKm": 20.7,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 19.6 km from known settlements."
         ]
       },
       {
@@ -572,7 +600,8 @@
         },
         "distanceKm": 25.0,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 19.6 km from known settlements."
         ]
       },
       {
@@ -585,7 +614,8 @@
         },
         "distanceKm": 50.9,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 19.6 km from known settlements."
         ]
       }
     ],
@@ -600,8 +630,9 @@
         },
         "distanceKm": 47.8,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected.",
-          "\ud83c\udfaf Prediction Score: 87/100. Highly confident model trajectory."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 73.5 km from known settlements.",
+          "\ud83c\udfaf Prediction: 87/100. High spatial consistency with verified migration corridors."
         ]
       },
       {
@@ -614,7 +645,8 @@
         },
         "distanceKm": 47.7,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 73.5 km from known settlements."
         ]
       },
       {
@@ -627,7 +659,8 @@
         },
         "distanceKm": 10.0,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 73.5 km from known settlements."
         ]
       },
       {
@@ -640,7 +673,8 @@
         },
         "distanceKm": 11.3,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 73.5 km from known settlements."
         ]
       },
       {
@@ -653,7 +687,8 @@
         },
         "distanceKm": 15.9,
         "reasoning": [
-          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+          "\ud83c\udf3f Habitat: 71/100. High biomass (NDVI: 0.50) strongly attracts foraging behavior.",
+          "\ud83d\udee1\ufe0f Safety: SECURE. Area is 73.5 km from known settlements."
         ]
       }
     ]
@@ -671,7 +706,7 @@
   "alertEvents": [
     {
       "id": "alert_1_1",
-      "timestamp": "2026-03-17 08:22 UTC",
+      "timestamp": "2026-03-17 08:32 UTC",
       "type": "prediction",
       "severity": "low",
       "message": "Elephant 1 is in a safe designated area.",
@@ -679,7 +714,7 @@
     },
     {
       "id": "alert_1_2",
-      "timestamp": "2026-03-17 08:22 UTC",
+      "timestamp": "2026-03-17 08:32 UTC",
       "type": "prediction",
       "severity": "low",
       "message": "Elephant 2 is in a safe designated area.",
@@ -687,7 +722,7 @@
     },
     {
       "id": "alert_1_4",
-      "timestamp": "2026-03-17 08:22 UTC",
+      "timestamp": "2026-03-17 08:32 UTC",
       "type": "prediction",
       "severity": "low",
       "message": "Elephant 4 is in a safe designated area.",
@@ -695,7 +730,7 @@
     },
     {
       "id": "alert_1_8",
-      "timestamp": "2026-03-17 08:22 UTC",
+      "timestamp": "2026-03-17 08:32 UTC",
       "type": "prediction",
       "severity": "low",
       "message": "Elephant 8 is in a safe designated area.",
@@ -703,7 +738,7 @@
     },
     {
       "id": "alert_1_5",
-      "timestamp": "2026-03-17 08:22 UTC",
+      "timestamp": "2026-03-17 08:32 UTC",
       "type": "prediction",
       "severity": "low",
       "message": "Elephant 5 is in a safe designated area.",
@@ -711,7 +746,7 @@
     },
     {
       "id": "alert_1_6",
-      "timestamp": "2026-03-17 08:22 UTC",
+      "timestamp": "2026-03-17 08:32 UTC",
       "type": "prediction",
       "severity": "low",
       "message": "Elephant 6 is in a safe designated area.",
@@ -719,7 +754,7 @@
     },
     {
       "id": "alert_1_7",
-      "timestamp": "2026-03-17 08:22 UTC",
+      "timestamp": "2026-03-17 08:32 UTC",
       "type": "prediction",
       "severity": "low",
       "message": "Elephant 7 is in a safe designated area.",
@@ -727,7 +762,7 @@
     },
     {
       "id": "alert_1_11",
-      "timestamp": "2026-03-17 08:22 UTC",
+      "timestamp": "2026-03-17 08:32 UTC",
       "type": "prediction",
       "severity": "low",
       "message": "Elephant 11 is in a safe designated area.",

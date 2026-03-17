@@ -185,26 +185,32 @@ def main():
                 speed = ctx.get('step_dist_m', 0)
                 
                 if ndvi > 0.45:
-                    reasons.append(f"🌟 Habitat Quality: {habitat_score}/100. Rich foraging grounds detected.")
+                    reasons.append(f"🌿 Habitat: {habitat_score}/100. High biomass (NDVI: {ndvi:.2f}) strongly attracts foraging behavior.")
                 elif ndvi < 0.15:
-                    reasons.append(f"🏜️ Habitat Quality: {habitat_score}/100. Sparse vegetation route.")
+                    reasons.append(f"🏜️ Habitat: {habitat_score}/100. Sparse vegetation corridor; movement likely transit-based.")
+                else:
+                    reasons.append(f"🌿 Habitat: {habitat_score}/100. Moderate foraging potential detected.")
                 
                 if cropland > 8.0:
-                    reasons.append(f"🌽 Resource Score: {int(min(cropland/20, 1.0)*100)}/100. High-calorie crop attraction.")
+                    crop_score = int(min(cropland/25, 1.0)*100)
+                    reasons.append(f"🌽 Resource: {crop_score}/100. High-calorie crop attraction ({cropland:.1f}%). Elephant may be targeting farms.")
                 
                 if v_dist < 2000:
-                    reasons.append(f"🚨 Conflict Risk: CRITICAL. Settlement proximity is {v_dist/1000.0:.1f} km.")
+                    reasons.append(f"🚨 Conflict Risk: CRITICAL. Human settlement at {v_dist/1000.0:.1f} km. Immediate action required.")
                 elif v_dist < 8000:
-                    reasons.append(f"⚠️ Conflict Risk: MODERATE. Elephant approaching settlements.")
+                    reasons.append(f"⚠️ Conflict Risk: MODERATE. Elephant is approaching human settlement boundaries ({v_dist/1000.0:.1f} km).")
+                else:
+                    reasons.append(f"🛡️ Safety: SECURE. Area is {v_dist/1000.0:.1f} km from known settlements.")
                 
                 if speed > 1500:
-                    reasons.append(f"🏹 Velocity: {int(min(speed/3000, 1.0)*100)}/100. Migratory response detected.")
+                    vel_score = int(min(speed/3500, 1.0)*100)
+                    reasons.append(f"🏹 Velocity: {vel_score}/100. Active migration response indicated by sustained velocity.")
                 
                 if p > 0.4:
-                    reasons.append(f"🎯 Prediction Score: {int(p*100)}/100. Highly confident model trajectory.")
+                    reasons.append(f"🎯 Prediction: {int(p*100)}/100. High spatial consistency with verified migration corridors.")
                 
                 if not reasons:
-                    reasons.append("📍 Activity: 100/100 Stationary. Browsing or resting behavior.")
+                    reasons.append("📍 Activity: 100/100 Stationary. Browsing or resting behavior detected.")
                 return reasons
 
             preds_out = []
