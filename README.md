@@ -10,6 +10,16 @@ A professional, real-time prediction and monitoring dashboard for elephant movem
 *   **Predictive Reasoning:** NEW! Transparent "Drivers" for every prediction (e.g., Vegetation Density, Human Proximity) to explain model decisions.
 *   **Early Warning Scenarios:** Includes 5 professionally staged demo scenarios (Crop Raid, Poaching Threat, Village Proximity) for client presentations.
 
+## ⚙️ Model Compatibility
+> [!IMPORTANT]
+> The models were trained in a cutting-edge environment. For successful deployment (avoiding `Pickle` or `KeyError`), ensure your environment matches these versions:
+> - **Python:** 3.14+
+> - **PyTorch:** 2.10.0+
+> - **Scikit-Learn:** 1.8.0+
+> - **Joblib:** 1.5.3+
+> - **Pandas:** 2.3.3+
+> - **Numpy:** 2.4.2+
+
 ## 🏗️ Technical Architecture
 ```text
 [ Data Sources ] -> [ Feature Engine ] -> [ LSTM Predictor ] -> [ FastAPI Backend ] -> [ React Dashboard ]
