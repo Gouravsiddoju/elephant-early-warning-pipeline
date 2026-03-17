@@ -16,7 +16,13 @@ A professional, real-time prediction and monitoring dashboard for elephant movem
   (Dryad, GEE)      (OSM, Rainfall)      (PyTorch Weights)      (REST Service)       (Vite/Shadcn)
 ```
 
-## 🚀 Setting Up the System
+### 0. Git LFS (Required for Models & Data)
+This project uses **Git Large File Storage (LFS)** to manage weights and CSV datasets.
+```powershell
+# Install LFS and pull the actual binary data
+git lfs install
+git lfs pull
+```
 
 ### 1. Backend (FastAPI)
 ```powershell
@@ -38,13 +44,8 @@ npm run dev
 *   **Dataset:** Based on the Dryad elephant GPS archives (doi:10.5061/dryad.dr7sqv9v9).
 *   **Accuracy:** Top-5 spatial accuracy is **2.14%**, which is **107x better than random chance** across 4,693 unique grid cells.
 
-## 🐳 Docker Deployment
-The backend is container-ready. 
-```powershell
-cd early_warning_pipeline
-docker build -t elephant-predictor .
-docker run -p 8000:8000 elephant-predictor
-```
+## 🐳 Deployment
+For full production deployment instructions, including Git LFS handling and static site hosting, please refer to the [Deployment Guide](file:///C:/Users/Gourav%20Siddoju/.gemini/antigravity/brain/8de69268-19df-461d-865b-0592a4caccf3/deployment_guide.md).
 
 ---
 *Created by the Gourav Siddoju Team for professional wildlife monitoring and conservation.*
