@@ -179,21 +179,32 @@ def main():
             def get_reasoning(ctx, p):
                 reasons = []
                 ndvi = ctx.get('ndvi', 0)
+                habitat_score = int(min(ndvi / 0.7, 1.0) * 100)
                 cropland = ctx.get('cropland_pct', 0)
                 v_dist = ctx.get('village_distance_m', 20000)
                 speed = ctx.get('step_dist_m', 0)
                 
-                if ndvi > 0.45: reasons.append(f"High-quality foraging habitat (NDVI: {ndvi:.2f}) attracts movement.")
-                elif ndvi < 0.15: reasons.append("Sparse vegetation: Likely a transit route between water sources.")
+                if ndvi > 0.45:
+                    reasons.append(f"🌟 Habitat Quality: {habitat_score}/100. Rich foraging grounds detected.")
+                elif ndvi < 0.15:
+                    reasons.append(f"🏜️ Habitat Quality: {habitat_score}/100. Sparse vegetation route.")
                 
-                if cropland > 8.0: reasons.append(f"High cropland concentration ({cropland:.1f}%) detected.")
+                if cropland > 8.0:
+                    reasons.append(f"🌽 Resource Score: {int(min(cropland/20, 1.0)*100)}/100. High-calorie crop attraction.")
                 
-                if v_dist < 2000: reasons.append(f"CRITICAL: Immediate settlement proximity ({v_dist/1000.0:.1f} km). Conflict risk.")
-                elif v_dist < 8000: reasons.append(f"Elephant is approaching human settlements ({v_dist/1000.0:.1f} km).")
+                if v_dist < 2000:
+                    reasons.append(f"🚨 Conflict Risk: CRITICAL. Settlement proximity is {v_dist/1000.0:.1f} km.")
+                elif v_dist < 8000:
+                    reasons.append(f"⚠️ Conflict Risk: MODERATE. Elephant approaching settlements.")
                 
-                if speed > 1500: reasons.append("Migratory behavior indicated by sustained velocity.")
-                if p > 0.4: reasons.append(f"Confirmed by spatial model with {p*100:.1f}% confidence.")
-                if not reasons: reasons.append("Predicted based on historical seasonal migration trends.")
+                if speed > 1500:
+                    reasons.append(f"🏹 Velocity: {int(min(speed/3000, 1.0)*100)}/100. Migratory response detected.")
+                
+                if p > 0.4:
+                    reasons.append(f"🎯 Prediction Score: {int(p*100)}/100. Highly confident model trajectory.")
+                
+                if not reasons:
+                    reasons.append("📍 Activity: 100/100 Stationary. Browsing or resting behavior.")
                 return reasons
 
             preds_out = []

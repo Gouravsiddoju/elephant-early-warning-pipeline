@@ -1,69 +1,108 @@
 {
-  "generatedAt": "2026-03-16 11:01 UTC",
+  "generatedAt": "2026-03-17 08:22 UTC",
   "elephants": [
     {
       "id": "E-1",
       "name": "Elephant 1",
-      "gridCell": "R0107_C0103",
+      "gridCell": "R0039_C0041",
       "position": {
-        "lat": -21.82949,
-        "lng": 27.99281
+        "lat": -18.99195,
+        "lng": 24.91656
       },
       "horizon": 48,
       "model": "LSTM (PyTorch)",
-      "lastUpdated": "2026-03-16 11:01 UTC",
+      "lastUpdated": "2026-03-17 08:22 UTC",
       "status": "safe"
     },
     {
       "id": "E-2",
       "name": "Elephant 2",
-      "gridCell": "R0106_C0063",
+      "gridCell": "R0039_C0025",
       "position": {
-        "lat": -21.85519,
-        "lng": 26.06628
+        "lat": -19.00647,
+        "lng": 24.15793
       },
       "horizon": 48,
       "model": "LSTM (PyTorch)",
-      "lastUpdated": "2026-03-16 11:01 UTC",
+      "lastUpdated": "2026-03-17 08:22 UTC",
+      "status": "safe"
+    },
+    {
+      "id": "E-4",
+      "name": "Elephant 4",
+      "gridCell": "R0015_C0048",
+      "position": {
+        "lat": -17.90301,
+        "lng": 25.22168
+      },
+      "horizon": 48,
+      "model": "LSTM (PyTorch)",
+      "lastUpdated": "2026-03-17 08:22 UTC",
       "status": "safe"
     },
     {
       "id": "E-8",
       "name": "Elephant 8",
-      "gridCell": "R0054_C0009",
+      "gridCell": "R0019_C0004",
       "position": {
-        "lat": -19.56767,
-        "lng": 23.42081
+        "lat": -18.11765,
+        "lng": 23.14996
       },
       "horizon": 48,
       "model": "LSTM (PyTorch)",
-      "lastUpdated": "2026-03-16 11:01 UTC",
+      "lastUpdated": "2026-03-17 08:22 UTC",
       "status": "safe"
     },
     {
       "id": "E-5",
       "name": "Elephant 5",
-      "gridCell": "R0069_C0089",
+      "gridCell": "R0024_C0036",
       "position": {
-        "lat": -21.33169,
-        "lng": 28.90997
+        "lat": -19.51187,
+        "lng": 26.28256
       },
       "horizon": 48,
       "model": "LSTM (PyTorch)",
-      "lastUpdated": "2026-03-16 11:01 UTC",
+      "lastUpdated": "2026-03-17 08:22 UTC",
       "status": "danger"
+    },
+    {
+      "id": "E-6",
+      "name": "Elephant 6",
+      "gridCell": "R0012_C0060",
+      "position": {
+        "lat": -17.75482,
+        "lng": 25.78275
+      },
+      "horizon": 48,
+      "model": "LSTM (PyTorch)",
+      "lastUpdated": "2026-03-17 08:22 UTC",
+      "status": "safe"
     },
     {
       "id": "E-7",
       "name": "Elephant 7",
-      "gridCell": "R0035_C0106",
+      "gridCell": "R0011_C0042",
       "position": {
-        "lat": -18.59497,
-        "lng": 27.99041
+        "lat": -17.7286,
+        "lng": 24.9352
       },
       "horizon": 48,
       "model": "LSTM (PyTorch)",
-      "lastUpdated": "2026-03-16 11:01 UTC",
+      "lastUpdated": "2026-03-17 08:22 UTC",
+      "status": "safe"
+    },
+    {
+      "id": "E-11",
+      "name": "Elephant 11",
+      "gridCell": "R0014_C0063",
+      "position": {
+        "lat": -17.84137,
+        "lng": 25.92621
+      },
+      "horizon": 48,
+      "model": "LSTM (PyTorch)",
+      "lastUpdated": "2026-03-17 08:22 UTC",
       "status": "safe"
     }
   ],
@@ -71,338 +110,550 @@
     "E-1": [
       {
         "rank": 1,
-        "gridCell": "R0090_C0095",
-        "confidence": 98.55,
+        "gridCell": "R0030_C0042",
+        "confidence": 83.15,
         "location": {
-          "lat": -21.08252,
-          "lng": 27.574
+          "lat": -18.58521,
+          "lng": 24.95445
         },
-        "distanceKm": 95.1,
+        "distanceKm": 45.3,
         "reasoning": [
-          "High-quality foraging habitat (NDVI: 0.50) attracts movement.",
-          "Confirmed by spatial model with 98.6% confidence."
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected.",
+          "\ud83c\udfaf Prediction Score: 83/100. Highly confident model trajectory."
         ]
       },
       {
         "rank": 2,
-        "gridCell": "R0104_C0102",
-        "confidence": 0.19,
+        "gridCell": "R0022_C0043",
+        "confidence": 8.92,
         "location": {
-          "lat": -21.697,
-          "lng": 27.93828
+          "lat": -18.22356,
+          "lng": 24.99339
         },
-        "distanceKm": 15.9,
+        "distanceKm": 85.7,
         "reasoning": [
-          "High-quality foraging habitat (NDVI: 0.50) attracts movement."
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
         ]
       },
       {
         "rank": 3,
-        "gridCell": "R0108_C0108",
-        "confidence": 0.15,
+        "gridCell": "R0033_C0038",
+        "confidence": 4.17,
         "location": {
-          "lat": -21.8639,
-          "lng": 28.2351
+          "lat": -18.72436,
+          "lng": 24.76831
         },
-        "distanceKm": 27.2,
+        "distanceKm": 34.0,
         "reasoning": [
-          "High-quality foraging habitat (NDVI: 0.50) attracts movement."
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
         ]
       },
       {
         "rank": 4,
-        "gridCell": "R0103_C0104",
-        "confidence": 0.14,
+        "gridCell": "R0029_C0047",
+        "confidence": 2.73,
         "location": {
-          "lat": -21.6481,
-          "lng": 28.03205
+          "lat": -18.53502,
+          "lng": 25.1897
         },
-        "distanceKm": 20.6,
+        "distanceKm": 59.1,
         "reasoning": [
-          "High-quality foraging habitat (NDVI: 0.50) attracts movement."
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
         ]
       },
       {
         "rank": 5,
-        "gridCell": "R0104_C0105",
-        "confidence": 0.14,
+        "gridCell": "R0031_C0043",
+        "confidence": 0.89,
         "location": {
-          "lat": -21.69089,
-          "lng": 28.0822
+          "lat": -18.62929,
+          "lng": 25.00278
         },
-        "distanceKm": 18.3,
+        "distanceKm": 41.4,
         "reasoning": [
-          "High-quality foraging habitat (NDVI: 0.50) attracts movement."
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
         ]
       }
     ],
     "E-2": [
       {
         "rank": 1,
-        "gridCell": "R0104_C0048",
-        "confidence": 73.71,
+        "gridCell": "R0039_C0024",
+        "confidence": 93.75,
         "location": {
-          "lat": -21.7858,
-          "lng": 25.3401
+          "lat": -19.00727,
+          "lng": 24.11049
         },
-        "distanceKm": 81.0,
+        "distanceKm": 5.3,
         "reasoning": [
-          "High-quality foraging habitat (NDVI: 0.50) attracts movement.",
-          "Confirmed by spatial model with 73.7% confidence."
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected.",
+          "\ud83c\udfaf Prediction Score: 93/100. Highly confident model trajectory."
         ]
       },
       {
         "rank": 2,
-        "gridCell": "R0103_C0061",
-        "confidence": 24.87,
+        "gridCell": "R0039_C0025",
+        "confidence": 5.96,
         "location": {
-          "lat": -21.72312,
-          "lng": 25.96521
+          "lat": -19.00647,
+          "lng": 24.15793
         },
-        "distanceKm": 18.5,
+        "distanceKm": 0.0,
         "reasoning": [
-          "High-quality foraging habitat (NDVI: 0.50) attracts movement."
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
         ]
       },
       {
         "rank": 3,
-        "gridCell": "R0104_C0062",
-        "confidence": 0.45,
+        "gridCell": "R0038_C0024",
+        "confidence": 0.24,
         "location": {
-          "lat": -21.76667,
-          "lng": 26.01494
+          "lat": -18.96215,
+          "lng": 24.10965
         },
-        "distanceKm": 11.4,
+        "distanceKm": 7.3,
         "reasoning": [
-          "High-quality foraging habitat (NDVI: 0.50) attracts movement."
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
         ]
       },
       {
         "rank": 4,
-        "gridCell": "R0105_C0060",
-        "confidence": 0.32,
+        "gridCell": "R0040_C0025",
+        "confidence": 0.06,
         "location": {
-          "lat": -21.81458,
-          "lng": 25.92012
+          "lat": -19.05159,
+          "lng": 24.15878
         },
-        "distanceKm": 16.8,
+        "distanceKm": 5.0,
         "reasoning": [
-          "High-quality foraging habitat (NDVI: 0.50) attracts movement."
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
         ]
       },
       {
         "rank": 5,
-        "gridCell": "R0104_C0060",
-        "confidence": 0.24,
+        "gridCell": "R0038_C0019",
+        "confidence": 0.0,
         "location": {
-          "lat": -21.76957,
-          "lng": 25.91858
+          "lat": -18.96598,
+          "lng": 23.8725
         },
-        "distanceKm": 19.0,
+        "distanceKm": 32.0,
         "reasoning": [
-          "High-quality foraging habitat (NDVI: 0.50) attracts movement."
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+        ]
+      }
+    ],
+    "E-4": [
+      {
+        "rank": 1,
+        "gridCell": "R0015_C0048",
+        "confidence": 100.0,
+        "location": {
+          "lat": -17.90301,
+          "lng": 25.22168
+        },
+        "distanceKm": 0.0,
+        "reasoning": [
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected.",
+          "\ud83d\udea8 Conflict Risk: CRITICAL. Settlement proximity is 0.0 km.",
+          "\ud83c\udfaf Prediction Score: 99/100. Highly confident model trajectory."
+        ]
+      },
+      {
+        "rank": 2,
+        "gridCell": "R0015_C0049",
+        "confidence": 0.0,
+        "location": {
+          "lat": -17.90198,
+          "lng": 25.26875
+        },
+        "distanceKm": 5.2,
+        "reasoning": [
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected.",
+          "\ud83d\udea8 Conflict Risk: CRITICAL. Settlement proximity is 0.0 km."
+        ]
+      },
+      {
+        "rank": 3,
+        "gridCell": "R0014_C0048",
+        "confidence": 0.0,
+        "location": {
+          "lat": -17.85794,
+          "lng": 25.22061
+        },
+        "distanceKm": 5.0,
+        "reasoning": [
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected.",
+          "\ud83d\udea8 Conflict Risk: CRITICAL. Settlement proximity is 0.0 km."
+        ]
+      },
+      {
+        "rank": 4,
+        "gridCell": "R0016_C0048",
+        "confidence": 0.0,
+        "location": {
+          "lat": -17.94808,
+          "lng": 25.22275
+        },
+        "distanceKm": 5.0,
+        "reasoning": [
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected.",
+          "\ud83d\udea8 Conflict Risk: CRITICAL. Settlement proximity is 0.0 km."
+        ]
+      },
+      {
+        "rank": 5,
+        "gridCell": "R0018_C0031",
+        "confidence": 0.0,
+        "location": {
+          "lat": -18.05409,
+          "lng": 24.42356
+        },
+        "distanceKm": 90.2,
+        "reasoning": [
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected.",
+          "\ud83d\udea8 Conflict Risk: CRITICAL. Settlement proximity is 0.0 km."
         ]
       }
     ],
     "E-8": [
       {
         "rank": 1,
-        "gridCell": "R0051_C0007",
-        "confidence": 17.17,
+        "gridCell": "R0021_C0001",
+        "confidence": 46.15,
         "location": {
-          "lat": -19.43347,
-          "lng": 23.32361
+          "lat": -18.20951,
+          "lng": 23.0093
         },
-        "distanceKm": 18.4,
+        "distanceKm": 18.6,
         "reasoning": [
-          "High-quality foraging habitat (NDVI: 0.50) attracts movement."
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected.",
+          "\ud83c\udfaf Prediction Score: 46/100. Highly confident model trajectory."
         ]
       },
       {
         "rank": 2,
-        "gridCell": "R0059_C0003",
-        "confidence": 10.99,
+        "gridCell": "R0024_C0004",
+        "confidence": 34.62,
         "location": {
-          "lat": -19.79704,
-          "lng": 23.138
+          "lat": -18.34345,
+          "lng": 23.15274
         },
-        "distanceKm": 40.4,
+        "distanceKm": 25.1,
         "reasoning": [
-          "High-quality foraging habitat (NDVI: 0.50) attracts movement."
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
         ]
       },
       {
         "rank": 3,
-        "gridCell": "R0056_C0009",
-        "confidence": 10.59,
+        "gridCell": "R0025_C0001",
+        "confidence": 3.85,
         "location": {
-          "lat": -19.65796,
-          "lng": 23.42216
+          "lat": -18.39016,
+          "lng": 23.01138
         },
-        "distanceKm": 10.0,
+        "distanceKm": 33.9,
         "reasoning": [
-          "High-quality foraging habitat (NDVI: 0.50) attracts movement."
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
         ]
       },
       {
         "rank": 4,
-        "gridCell": "R0051_C0006",
-        "confidence": 8.43,
+        "gridCell": "R0031_C0012",
+        "confidence": 3.85,
         "location": {
-          "lat": -19.43408,
-          "lng": 23.27602
+          "lat": -18.65482,
+          "lng": 23.53565
         },
-        "distanceKm": 21.9,
+        "distanceKm": 73.4,
         "reasoning": [
-          "High-quality foraging habitat (NDVI: 0.50) attracts movement."
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
         ]
       },
       {
         "rank": 5,
-        "gridCell": "R0053_C0002",
-        "confidence": 3.99,
+        "gridCell": "R0026_C0009",
+        "confidence": 3.85,
         "location": {
-          "lat": -19.52668,
-          "lng": 23.08679
+          "lat": -18.43093,
+          "lng": 23.39041
         },
-        "distanceKm": 37.4,
+        "distanceKm": 43.8,
         "reasoning": [
-          "High-quality foraging habitat (NDVI: 0.50) attracts movement."
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
         ]
       }
     ],
     "E-5": [
       {
         "rank": 1,
-        "gridCell": "R0056_C0103",
-        "confidence": 27.22,
+        "gridCell": "R0019_C0045",
+        "confidence": 99.2,
         "location": {
-          "lat": -20.72361,
-          "lng": 29.55
+          "lat": -19.27784,
+          "lng": 26.70216
         },
-        "distanceKm": 98.0,
+        "distanceKm": 53.3,
         "reasoning": [
-          "High-quality foraging habitat (NDVI: 0.50) attracts movement."
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected.",
+          "\ud83c\udfaf Prediction Score: 99/100. Highly confident model trajectory."
         ]
       },
       {
         "rank": 2,
-        "gridCell": "R0056_C0102",
-        "confidence": 21.14,
+        "gridCell": "R0010_C0036",
+        "confidence": 0.55,
         "location": {
-          "lat": -20.72541,
-          "lng": 29.50268
+          "lat": -18.88046,
+          "lng": 26.26952
         },
-        "distanceKm": 94.1,
+        "distanceKm": 70.1,
         "reasoning": [
-          "High-quality foraging habitat (NDVI: 0.50) attracts movement."
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
         ]
       },
       {
         "rank": 3,
-        "gridCell": "R0055_C0102",
-        "confidence": 16.66,
+        "gridCell": "R0019_C0044",
+        "confidence": 0.08,
         "location": {
-          "lat": -20.68055,
-          "lng": 29.50078
+          "lat": -19.27883,
+          "lng": 26.65502
         },
-        "distanceKm": 97.6,
+        "distanceKm": 48.8,
         "reasoning": [
-          "High-quality foraging habitat (NDVI: 0.50) attracts movement."
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
         ]
       },
       {
         "rank": 4,
-        "gridCell": "R0056_C0101",
-        "confidence": 13.91,
+        "gridCell": "R0010_C0037",
+        "confidence": 0.05,
         "location": {
-          "lat": -20.72721,
-          "lng": 29.45535
+          "lat": -18.87958,
+          "lng": 26.31657
         },
-        "distanceKm": 90.4,
+        "distanceKm": 70.3,
         "reasoning": [
-          "High-quality foraging habitat (NDVI: 0.50) attracts movement."
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
         ]
       },
       {
         "rank": 5,
-        "gridCell": "R0057_C0100",
-        "confidence": 9.21,
+        "gridCell": "R0020_C0046",
+        "confidence": 0.04,
         "location": {
-          "lat": -20.77386,
-          "lng": 29.4099
+          "lat": -19.32191,
+          "lng": 26.75035
         },
-        "distanceKm": 83.1,
+        "distanceKm": 56.0,
         "reasoning": [
-          "High-quality foraging habitat (NDVI: 0.50) attracts movement."
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+        ]
+      }
+    ],
+    "E-6": [
+      {
+        "rank": 1,
+        "gridCell": "R0022_C0045",
+        "confidence": 47.79,
+        "location": {
+          "lat": -18.22157,
+          "lng": 25.08774
+        },
+        "distanceKm": 92.9,
+        "reasoning": [
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected.",
+          "\ud83c\udfaf Prediction Score: 47/100. Highly confident model trajectory."
+        ]
+      },
+      {
+        "rank": 2,
+        "gridCell": "R0022_C0046",
+        "confidence": 40.78,
+        "location": {
+          "lat": -18.22056,
+          "lng": 25.13491
+        },
+        "distanceKm": 88.6,
+        "reasoning": [
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected.",
+          "\ud83c\udfaf Prediction Score: 40/100. Highly confident model trajectory."
+        ]
+      },
+      {
+        "rank": 3,
+        "gridCell": "R0017_C0044",
+        "confidence": 11.35,
+        "location": {
+          "lat": -17.99717,
+          "lng": 25.03539
+        },
+        "distanceKm": 87.2,
+        "reasoning": [
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+        ]
+      },
+      {
+        "rank": 4,
+        "gridCell": "R0023_C0047",
+        "confidence": 0.06,
+        "location": {
+          "lat": -18.2646,
+          "lng": 25.18315
+        },
+        "distanceKm": 87.4,
+        "reasoning": [
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+        ]
+      },
+      {
+        "rank": 5,
+        "gridCell": "R0014_C0041",
+        "confidence": 0.02,
+        "location": {
+          "lat": -17.8648,
+          "lng": 24.89108
+        },
+        "distanceKm": 99.7,
+        "reasoning": [
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
         ]
       }
     ],
     "E-7": [
       {
         "rank": 1,
-        "gridCell": "R0048_C0107",
-        "confidence": 73.28,
+        "gridCell": "R0015_C0042",
+        "confidence": 99.94,
         "location": {
-          "lat": -19.1762,
-          "lng": 28.06196
+          "lat": -17.90894,
+          "lng": 24.93916
         },
-        "distanceKm": 65.0,
+        "distanceKm": 20.0,
         "reasoning": [
-          "High-quality foraging habitat (NDVI: 0.50) attracts movement.",
-          "Confirmed by spatial model with 73.3% confidence."
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected.",
+          "\ud83c\udfaf Prediction Score: 99/100. Highly confident model trajectory."
         ]
       },
       {
         "rank": 2,
-        "gridCell": "R0047_C0106",
-        "confidence": 26.35,
+        "gridCell": "R0014_C0041",
+        "confidence": 0.03,
         "location": {
-          "lat": -19.13317,
-          "lng": 28.01286
+          "lat": -17.8648,
+          "lng": 24.89108
         },
-        "distanceKm": 59.8,
+        "distanceKm": 15.9,
         "reasoning": [
-          "High-quality foraging habitat (NDVI: 0.50) attracts movement."
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
         ]
       },
       {
         "rank": 3,
-        "gridCell": "R0047_C0107",
-        "confidence": 0.16,
+        "gridCell": "R0015_C0041",
+        "confidence": 0.02,
         "location": {
-          "lat": -19.13136,
-          "lng": 28.06004
+          "lat": -17.90989,
+          "lng": 24.89207
         },
-        "distanceKm": 60.0,
+        "distanceKm": 20.7,
         "reasoning": [
-          "High-quality foraging habitat (NDVI: 0.50) attracts movement."
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
         ]
       },
       {
         "rank": 4,
-        "gridCell": "R0048_C0108",
-        "confidence": 0.11,
+        "gridCell": "R0016_C0042",
+        "confidence": 0.01,
         "location": {
-          "lat": -19.17437,
-          "lng": 28.10915
+          "lat": -17.95403,
+          "lng": 24.94016
         },
-        "distanceKm": 65.7,
+        "distanceKm": 25.0,
         "reasoning": [
-          "High-quality foraging habitat (NDVI: 0.50) attracts movement."
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
         ]
       },
       {
         "rank": 5,
-        "gridCell": "R0047_C0102",
-        "confidence": 0.1,
+        "gridCell": "R0019_C0048",
+        "confidence": 0.0,
         "location": {
-          "lat": -19.14031,
-          "lng": 27.82407
+          "lat": -18.08329,
+          "lng": 25.22598
         },
-        "distanceKm": 63.3,
+        "distanceKm": 50.9,
         "reasoning": [
-          "High-quality foraging habitat (NDVI: 0.50) attracts movement."
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+        ]
+      }
+    ],
+    "E-11": [
+      {
+        "rank": 1,
+        "gridCell": "R0006_C0058",
+        "confidence": 87.5,
+        "location": {
+          "lat": -17.48683,
+          "lng": 25.68174
+        },
+        "distanceKm": 47.8,
+        "reasoning": [
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected.",
+          "\ud83c\udfaf Prediction Score: 87/100. Highly confident model trajectory."
+        ]
+      },
+      {
+        "rank": 2,
+        "gridCell": "R0005_C0060",
+        "confidence": 12.49,
+        "location": {
+          "lat": -17.43956,
+          "lng": 25.77444
+        },
+        "distanceKm": 47.7,
+        "reasoning": [
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+        ]
+      },
+      {
+        "rank": 3,
+        "gridCell": "R0012_C0063",
+        "confidence": 0.01,
+        "location": {
+          "lat": -17.75132,
+          "lng": 25.92373
+        },
+        "distanceKm": 10.0,
+        "reasoning": [
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+        ]
+      },
+      {
+        "rank": 4,
+        "gridCell": "R0012_C0064",
+        "confidence": 0.0,
+        "location": {
+          "lat": -17.75013,
+          "lng": 25.97072
+        },
+        "distanceKm": 11.3,
+        "reasoning": [
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
+        ]
+      },
+      {
+        "rank": 5,
+        "gridCell": "R0011_C0062",
+        "confidence": 0.0,
+        "location": {
+          "lat": -17.70746,
+          "lng": 25.87552
+        },
+        "distanceKm": 15.9,
+        "reasoning": [
+          "\ud83c\udf1f Habitat Quality: 71/100. Rich foraging grounds detected."
         ]
       }
     ]
@@ -410,6 +661,7 @@
   "villagesMap": {
     "E-1": [],
     "E-2": [],
+    "E-4": [],
     "E-8": [],
     "E-5": [
       {
@@ -419,12 +671,14 @@
         "atRisk": true
       }
     ],
-    "E-7": []
+    "E-6": [],
+    "E-7": [],
+    "E-11": []
   },
   "alertEvents": [
     {
       "id": "alert_2_1",
-      "timestamp": "2026-03-16 11:01 UTC",
+      "timestamp": "2026-03-17 08:22 UTC",
       "type": "prediction",
       "severity": "low",
       "message": "Elephant 1 is in a safe designated area.",
@@ -432,15 +686,23 @@
     },
     {
       "id": "alert_2_2",
-      "timestamp": "2026-03-16 11:01 UTC",
+      "timestamp": "2026-03-17 08:22 UTC",
       "type": "prediction",
       "severity": "low",
       "message": "Elephant 2 is in a safe designated area.",
       "elephantId": "E-2"
     },
     {
+      "id": "alert_2_4",
+      "timestamp": "2026-03-17 08:22 UTC",
+      "type": "prediction",
+      "severity": "low",
+      "message": "Elephant 4 is in a safe designated area.",
+      "elephantId": "E-4"
+    },
+    {
       "id": "alert_2_8",
-      "timestamp": "2026-03-16 11:01 UTC",
+      "timestamp": "2026-03-17 08:22 UTC",
       "type": "prediction",
       "severity": "low",
       "message": "Elephant 8 is in a safe designated area.",
@@ -448,19 +710,35 @@
     },
     {
       "id": "alert_2_5",
-      "timestamp": "2026-03-16 11:01 UTC",
+      "timestamp": "2026-03-17 08:22 UTC",
       "type": "proximity",
       "severity": "high",
       "message": "\u26a0\ufe0f Elephant 5 entering Nata farmlands \u2014 immediate crop risk",
       "elephantId": "E-5"
     },
     {
+      "id": "alert_2_6",
+      "timestamp": "2026-03-17 08:22 UTC",
+      "type": "prediction",
+      "severity": "low",
+      "message": "Elephant 6 is in a safe designated area.",
+      "elephantId": "E-6"
+    },
+    {
       "id": "alert_2_7",
-      "timestamp": "2026-03-16 11:01 UTC",
+      "timestamp": "2026-03-17 08:22 UTC",
       "type": "prediction",
       "severity": "low",
       "message": "Elephant 7 is in a safe designated area.",
       "elephantId": "E-7"
+    },
+    {
+      "id": "alert_2_11",
+      "timestamp": "2026-03-17 08:22 UTC",
+      "type": "prediction",
+      "severity": "low",
+      "message": "Elephant 11 is in a safe designated area.",
+      "elephantId": "E-11"
     }
   ],
   "movementMap": {
@@ -668,6 +946,108 @@
         "distance": 0.108
       }
     ],
+    "E-4": [
+      {
+        "hour": "22:00",
+        "distance": 0.637
+      },
+      {
+        "hour": "23:00",
+        "distance": 1.13
+      },
+      {
+        "hour": "00:00",
+        "distance": 0.375
+      },
+      {
+        "hour": "01:00",
+        "distance": 0.009
+      },
+      {
+        "hour": "02:00",
+        "distance": 0.039
+      },
+      {
+        "hour": "03:00",
+        "distance": 0.337
+      },
+      {
+        "hour": "04:00",
+        "distance": 0.379
+      },
+      {
+        "hour": "05:00",
+        "distance": 0.312
+      },
+      {
+        "hour": "06:00",
+        "distance": 0.323
+      },
+      {
+        "hour": "07:00",
+        "distance": 0.463
+      },
+      {
+        "hour": "08:00",
+        "distance": 0.208
+      },
+      {
+        "hour": "09:00",
+        "distance": 0.479
+      },
+      {
+        "hour": "10:00",
+        "distance": 0.429
+      },
+      {
+        "hour": "11:00",
+        "distance": 0.457
+      },
+      {
+        "hour": "12:00",
+        "distance": 0.484
+      },
+      {
+        "hour": "13:00",
+        "distance": 0.06
+      },
+      {
+        "hour": "14:00",
+        "distance": 0.425
+      },
+      {
+        "hour": "15:00",
+        "distance": 1.011
+      },
+      {
+        "hour": "16:00",
+        "distance": 0.725
+      },
+      {
+        "hour": "17:00",
+        "distance": 0.607
+      },
+      {
+        "hour": "18:00",
+        "distance": 0.841
+      },
+      {
+        "hour": "19:00",
+        "distance": 0.021
+      },
+      {
+        "hour": "20:00",
+        "distance": 0.23
+      },
+      {
+        "hour": "21:00",
+        "distance": 0.04
+      },
+      {
+        "hour": "22:00",
+        "distance": 0.068
+      }
+    ],
     "E-8": [
       {
         "hour": "22:00",
@@ -872,6 +1252,108 @@
         "distance": 1.408
       }
     ],
+    "E-6": [
+      {
+        "hour": "22:00",
+        "distance": 0.377
+      },
+      {
+        "hour": "23:00",
+        "distance": 0.722
+      },
+      {
+        "hour": "00:00",
+        "distance": 0.102
+      },
+      {
+        "hour": "01:00",
+        "distance": 0.002
+      },
+      {
+        "hour": "02:00",
+        "distance": 0.007
+      },
+      {
+        "hour": "03:00",
+        "distance": 0.112
+      },
+      {
+        "hour": "04:00",
+        "distance": 0.778
+      },
+      {
+        "hour": "05:00",
+        "distance": 0.251
+      },
+      {
+        "hour": "06:00",
+        "distance": 0.896
+      },
+      {
+        "hour": "07:00",
+        "distance": 0.568
+      },
+      {
+        "hour": "08:00",
+        "distance": 0.389
+      },
+      {
+        "hour": "09:00",
+        "distance": 0.463
+      },
+      {
+        "hour": "10:00",
+        "distance": 0.106
+      },
+      {
+        "hour": "11:00",
+        "distance": 0.169
+      },
+      {
+        "hour": "12:00",
+        "distance": 0.144
+      },
+      {
+        "hour": "13:00",
+        "distance": 0.34
+      },
+      {
+        "hour": "14:00",
+        "distance": 0.207
+      },
+      {
+        "hour": "15:00",
+        "distance": 0.207
+      },
+      {
+        "hour": "16:00",
+        "distance": 0.207
+      },
+      {
+        "hour": "17:00",
+        "distance": 0.207
+      },
+      {
+        "hour": "18:00",
+        "distance": 0.207
+      },
+      {
+        "hour": "19:00",
+        "distance": 0.207
+      },
+      {
+        "hour": "20:00",
+        "distance": 1.026
+      },
+      {
+        "hour": "21:00",
+        "distance": 0.685
+      },
+      {
+        "hour": "22:00",
+        "distance": 0.664
+      }
+    ],
     "E-7": [
       {
         "hour": "22:00",
@@ -973,537 +1455,957 @@
         "hour": "22:00",
         "distance": 0.248
       }
+    ],
+    "E-11": [
+      {
+        "hour": "22:00",
+        "distance": 1.751
+      },
+      {
+        "hour": "23:00",
+        "distance": 0.91
+      },
+      {
+        "hour": "00:00",
+        "distance": 0.016
+      },
+      {
+        "hour": "01:00",
+        "distance": 0.014
+      },
+      {
+        "hour": "02:00",
+        "distance": 0.015
+      },
+      {
+        "hour": "03:00",
+        "distance": 0.006
+      },
+      {
+        "hour": "04:00",
+        "distance": 1.696
+      },
+      {
+        "hour": "05:00",
+        "distance": 1.154
+      },
+      {
+        "hour": "06:00",
+        "distance": 1.829
+      },
+      {
+        "hour": "07:00",
+        "distance": 0.461
+      },
+      {
+        "hour": "08:00",
+        "distance": 0.753
+      },
+      {
+        "hour": "09:00",
+        "distance": 1.108
+      },
+      {
+        "hour": "10:00",
+        "distance": 0.963
+      },
+      {
+        "hour": "11:00",
+        "distance": 0.641
+      },
+      {
+        "hour": "12:00",
+        "distance": 0.549
+      },
+      {
+        "hour": "13:00",
+        "distance": 0.549
+      },
+      {
+        "hour": "14:00",
+        "distance": 0.0
+      },
+      {
+        "hour": "15:00",
+        "distance": 0.0
+      },
+      {
+        "hour": "16:00",
+        "distance": 1.066
+      },
+      {
+        "hour": "17:00",
+        "distance": 1.066
+      },
+      {
+        "hour": "18:00",
+        "distance": 1.066
+      },
+      {
+        "hour": "19:00",
+        "distance": 1.066
+      },
+      {
+        "hour": "20:00",
+        "distance": 1.066
+      },
+      {
+        "hour": "21:00",
+        "distance": 1.066
+      },
+      {
+        "hour": "22:00",
+        "distance": 1.066
+      }
     ]
   },
   "historyMap": {
     "E-1": [
       [
-        -21.82949,
-        27.99281
+        -18.99195,
+        24.91656
       ],
       [
-        -21.82883,
-        27.99352
+        -18.99129,
+        24.91726
       ],
       [
-        -21.82821,
-        27.99471
+        -18.99067,
+        24.91843
       ],
       [
-        -21.82814,
-        27.99436
+        -18.9906,
+        24.91808
       ],
       [
-        -21.82843,
-        27.99418
+        -18.99089,
+        24.9179
       ],
       [
-        -21.82814,
-        27.99436
+        -18.9906,
+        24.91808
       ],
       [
-        -21.82805,
-        27.99443
+        -18.99051,
+        24.91815
       ],
       [
-        -21.8262,
-        27.99328
+        -18.98866,
+        24.91702
       ],
       [
-        -21.82176,
-        27.99629
+        -18.98422,
+        24.91998
       ],
       [
-        -21.81718,
-        27.99831
+        -18.97964,
+        24.92197
       ],
       [
-        -21.80117,
-        28.00062
+        -18.96363,
+        24.92424
       ],
       [
-        -21.79471,
-        27.99768
+        -18.95717,
+        24.92136
       ],
       [
-        -21.79538,
-        27.9993
+        -18.95784,
+        24.92295
       ],
       [
-        -21.79576,
-        27.99964
+        -18.95822,
+        24.92329
       ],
       [
-        -21.79709,
-        28.00055
+        -18.95955,
+        24.92418
       ],
       [
-        -21.79828,
-        28.0007
+        -18.96074,
+        24.92433
       ],
       [
-        -21.79888,
-        28.00001
+        -18.96134,
+        24.92365
       ],
       [
-        -21.80039,
-        28.0014
+        -18.96285,
+        24.92501
       ],
       [
-        -21.80235,
-        27.99604
+        -18.96481,
+        24.91974
       ],
       [
-        -21.8045,
-        27.99257
+        -18.96696,
+        24.91633
       ],
       [
-        -21.80374,
-        27.98971
+        -18.9662,
+        24.91352
       ],
       [
-        -21.80402,
-        27.9873
+        -18.96648,
+        24.91115
       ],
       [
-        -21.80573,
-        27.97734
+        -18.96819,
+        24.90137
       ],
       [
-        -21.80769,
-        27.97068
+        -18.97015,
+        24.89484
       ],
       [
-        -21.80732,
-        27.96907
+        -18.96978,
+        24.89326
       ],
       [
-        -21.80627,
-        27.96942
+        -18.96873,
+        24.89361
       ]
     ],
     "E-2": [
       [
-        -21.85519,
-        26.06628
+        -19.00647,
+        24.15793
       ],
       [
-        -21.85428,
-        26.06575
+        -19.00556,
+        24.15741
       ],
       [
-        -21.85372,
-        26.06482
+        -19.005,
+        24.1565
       ],
       [
-        -21.85363,
-        26.06372
+        -19.00491,
+        24.15542
       ],
       [
-        -21.85404,
-        26.0627
+        -19.00532,
+        24.15442
       ],
       [
-        -21.85485,
-        26.06202
+        -19.00613,
+        24.15375
       ],
       [
-        -21.85586,
-        26.06183
+        -19.00714,
+        24.15357
       ],
       [
-        -21.85683,
-        26.06219
+        -19.00811,
+        24.15392
       ],
       [
-        -21.85753,
-        26.063
+        -19.00881,
+        24.15472
       ],
       [
-        -21.85779,
-        26.06407
+        -19.00907,
+        24.15577
       ],
       [
-        -21.85754,
-        26.06515
+        -19.00882,
+        24.15683
       ],
       [
-        -21.85685,
-        26.06597
+        -19.00813,
+        24.15764
       ],
       [
-        -21.85588,
-        26.06634
+        -19.00716,
+        24.158
       ],
       [
-        -21.85486,
-        26.06617
+        -19.00614,
+        24.15783
       ],
       [
-        -21.85404,
-        26.0655
+        -19.00532,
+        24.15717
       ],
       [
-        -21.85362,
-        26.06449
+        -19.0049,
+        24.15618
       ],
       [
-        -21.8537,
-        26.06338
+        -19.00498,
+        24.15509
       ],
       [
-        -21.85425,
-        26.06245
+        -19.00553,
+        24.15417
       ],
       [
-        -21.85515,
-        26.06191
+        -19.00643,
+        24.15364
       ],
       [
-        -21.85618,
-        26.0619
+        -19.00746,
+        24.15363
       ],
       [
-        -21.85709,
-        26.06242
+        -19.00837,
+        24.15414
       ],
       [
-        -21.85766,
-        26.06334
+        -19.00894,
+        24.15504
       ],
       [
-        -21.85776,
-        26.06444
+        -19.00904,
+        24.15612
       ],
       [
-        -21.85769,
-        26.06462
+        -19.00897,
+        24.1563
       ],
       [
-        -21.85735,
-        26.06617
+        -19.00863,
+        24.15782
       ],
       [
-        -21.85705,
-        26.06717
+        -19.00833,
+        24.1588
+      ]
+    ],
+    "E-4": [
+      [
+        -17.90301,
+        25.22168
+      ],
+      [
+        -17.90736,
+        25.21774
+      ],
+      [
+        -17.91629,
+        25.21261
+      ],
+      [
+        -17.91824,
+        25.2097
+      ],
+      [
+        -17.91816,
+        25.2097
+      ],
+      [
+        -17.91849,
+        25.20959
+      ],
+      [
+        -17.92107,
+        25.20791
+      ],
+      [
+        -17.92378,
+        25.20573
+      ],
+      [
+        -17.92603,
+        25.20396
+      ],
+      [
+        -17.92876,
+        25.20289
+      ],
+      [
+        -17.93212,
+        25.2003
+      ],
+      [
+        -17.93359,
+        25.19907
+      ],
+      [
+        -17.93728,
+        25.20141
+      ],
+      [
+        -17.9399,
+        25.19842
+      ],
+      [
+        -17.94218,
+        25.19482
+      ],
+      [
+        -17.94131,
+        25.19033
+      ],
+      [
+        -17.94179,
+        25.1906
+      ],
+      [
+        -17.93851,
+        25.19267
+      ],
+      [
+        -17.93071,
+        25.1976
+      ],
+      [
+        -17.92421,
+        25.19692
+      ],
+      [
+        -17.91904,
+        25.19503
+      ],
+      [
+        -17.91159,
+        25.1936
+      ],
+      [
+        -17.91141,
+        25.19367
+      ],
+      [
+        -17.90959,
+        25.19471
+      ],
+      [
+        -17.9093,
+        25.19449
+      ],
+      [
+        -17.90968,
+        25.19398
       ]
     ],
     "E-8": [
       [
-        -19.56767,
-        23.42081
+        -18.11765,
+        23.14996
       ],
       [
-        -19.5642,
-        23.42191
+        -18.11418,
+        23.15105
       ],
       [
-        -19.56268,
-        23.42165
+        -18.11266,
+        23.15079
       ],
       [
-        -19.56147,
-        23.42081
+        -18.11145,
+        23.14996
       ],
       [
-        -19.56102,
-        23.42021
+        -18.111,
+        23.14937
       ],
       [
-        -19.561,
-        23.42024
+        -18.11098,
+        23.1494
       ],
       [
-        -19.56103,
-        23.4202
+        -18.11101,
+        23.14936
       ],
       [
-        -19.55971,
-        23.42115
+        -18.10969,
+        23.1503
       ],
       [
-        -19.55672,
-        23.41979
+        -18.1067,
+        23.14895
       ],
       [
-        -19.54611,
-        23.41416
+        -18.09609,
+        23.14337
       ],
       [
-        -19.54544,
-        23.41438
+        -18.09542,
+        23.14359
       ],
       [
-        -19.54529,
-        23.41537
+        -18.09527,
+        23.14457
       ],
       [
-        -19.54498,
-        23.4141
+        -18.09496,
+        23.14331
       ],
       [
-        -19.54519,
-        23.41324
+        -18.09517,
+        23.14246
       ],
       [
-        -19.54665,
-        23.41373
+        -18.09663,
+        23.14295
       ],
       [
-        -19.54709,
-        23.41635
+        -18.09707,
+        23.14554
       ],
       [
-        -19.54599,
-        23.42111
+        -18.09597,
+        23.15026
       ],
       [
-        -19.55298,
-        23.42637
+        -18.10296,
+        23.15547
       ],
       [
-        -19.55869,
-        23.4295
+        -18.10867,
+        23.15857
       ],
       [
-        -19.56015,
-        23.43037
+        -18.11013,
+        23.15943
       ],
       [
-        -19.56075,
-        23.43149
+        -18.11073,
+        23.16055
       ],
       [
-        -19.55791,
-        23.43311
+        -18.10789,
+        23.16216
       ],
       [
-        -19.55951,
-        23.43592
+        -18.10949,
+        23.16495
       ],
       [
-        -19.56182,
-        23.43582
+        -18.1118,
+        23.16485
       ],
       [
-        -19.56327,
-        23.43613
+        -18.11325,
+        23.16515
       ],
       [
-        -19.56481,
-        23.43597
+        -18.11479,
+        23.16499
       ]
     ],
     "E-5": [
       [
-        -21.33169,
-        28.90997
+        -19.51187,
+        26.28256
       ],
       [
-        -21.33166,
-        28.90983
+        -19.51184,
+        26.28242
       ],
       [
-        -21.33169,
-        28.91028
+        -19.51187,
+        26.28287
       ],
       [
-        -21.33148,
-        28.91091
+        -19.51166,
+        26.28349
       ],
       [
-        -21.33162,
-        28.91165
+        -19.5118,
+        26.28422
       ],
       [
-        -21.33104,
-        28.9118
+        -19.51122,
+        26.28437
       ],
       [
-        -21.3307,
-        28.91125
+        -19.51088,
+        26.28382
       ],
       [
-        -21.3308,
-        28.91131
+        -19.51098,
+        26.28388
       ],
       [
-        -21.33359,
-        28.91245
+        -19.51377,
+        26.28501
       ],
       [
-        -21.34063,
-        28.90813
+        -19.52081,
+        26.28074
       ],
       [
-        -21.34239,
-        28.90879
+        -19.52257,
+        26.28139
       ],
       [
-        -21.34353,
-        28.90885
+        -19.52371,
+        26.28145
       ],
       [
-        -21.34241,
-        28.90861
+        -19.52259,
+        26.28122
       ],
       [
-        -21.34353,
-        28.90885
+        -19.52371,
+        26.28145
       ],
       [
-        -21.34352,
-        28.90889
+        -19.5237,
+        26.28149
       ],
       [
-        -21.34364,
-        28.90837
+        -19.52382,
+        26.28098
       ],
       [
-        -21.34531,
-        28.90915
+        -19.52549,
+        26.28176
       ],
       [
-        -21.34723,
-        28.90776
+        -19.52741,
+        26.28039
       ],
       [
-        -21.35348,
-        28.91362
+        -19.53366,
+        26.28618
       ],
       [
-        -21.36144,
-        28.90268
+        -19.54162,
+        26.27537
       ],
       [
-        -21.36485,
-        28.89038
+        -19.54503,
+        26.26322
       ],
       [
-        -21.35834,
-        28.89368
+        -19.53852,
+        26.26648
       ],
       [
-        -21.3496,
-        28.89534
+        -19.52978,
+        26.26812
       ],
       [
-        -21.34307,
-        28.89899
+        -19.52325,
+        26.27173
       ],
       [
-        -21.33729,
-        28.89942
+        -19.51747,
+        26.27215
       ],
       [
-        -21.32475,
-        28.90148
+        -19.50493,
+        26.27419
+      ]
+    ],
+    "E-6": [
+      [
+        -17.75482,
+        25.78275
+      ],
+      [
+        -17.75309,
+        25.77969
+      ],
+      [
+        -17.74739,
+        25.77641
+      ],
+      [
+        -17.74647,
+        25.77633
+      ],
+      [
+        -17.74645,
+        25.77633
+      ],
+      [
+        -17.7464,
+        25.77638
+      ],
+      [
+        -17.74563,
+        25.77706
+      ],
+      [
+        -17.73882,
+        25.77532
+      ],
+      [
+        -17.73678,
+        25.77634
+      ],
+      [
+        -17.73036,
+        25.78149
+      ],
+      [
+        -17.72562,
+        25.7835
+      ],
+      [
+        -17.72556,
+        25.78718
+      ],
+      [
+        -17.72318,
+        25.79077
+      ],
+      [
+        -17.72343,
+        25.79174
+      ],
+      [
+        -17.7249,
+        25.79216
+      ],
+      [
+        -17.72607,
+        25.79274
+      ],
+      [
+        -17.72599,
+        25.79595
+      ],
+      [
+        -17.72682,
+        25.7977
+      ],
+      [
+        -17.72833,
+        25.79884
+      ],
+      [
+        -17.73017,
+        25.7991
+      ],
+      [
+        -17.73192,
+        25.79843
+      ],
+      [
+        -17.73316,
+        25.79698
+      ],
+      [
+        -17.73361,
+        25.79508
+      ],
+      [
+        -17.73139,
+        25.78566
+      ],
+      [
+        -17.72949,
+        25.7795
+      ],
+      [
+        -17.73217,
+        25.77388
       ]
     ],
     "E-7": [
       [
-        -18.59497,
-        27.99041
+        -17.7286,
+        24.9352
       ],
       [
-        -18.59518,
-        27.99065
+        -17.72881,
+        24.93543
       ],
       [
-        -18.59569,
-        27.99042
+        -17.72932,
+        24.9352
       ],
       [
-        -18.5959,
-        27.99075
+        -17.72953,
+        24.93553
       ],
       [
-        -18.59594,
-        27.99072
+        -17.72957,
+        24.9355
       ],
       [
-        -18.59594,
-        27.99074
+        -17.72957,
+        24.93552
       ],
       [
-        -18.59598,
-        27.99074
+        -17.72961,
+        24.93552
       ],
       [
-        -18.59659,
-        27.99169
+        -17.73022,
+        24.93647
       ],
       [
-        -18.59485,
-        27.99511
+        -17.72848,
+        24.93988
       ],
       [
-        -18.59406,
-        28.00098
+        -17.72769,
+        24.94572
       ],
       [
-        -18.59534,
-        27.9989
+        -17.72897,
+        24.94365
       ],
       [
-        -18.59454,
-        27.99882
+        -17.72817,
+        24.94357
       ],
       [
-        -18.59314,
-        27.99784
+        -17.72677,
+        24.9426
       ],
       [
-        -18.59268,
-        27.9987
+        -17.72631,
+        24.94345
       ],
       [
-        -18.59275,
-        27.99745
+        -17.72638,
+        24.94221
       ],
       [
-        -18.59349,
-        27.99967
+        -17.72712,
+        24.94442
       ],
       [
-        -18.59198,
-        27.99793
+        -17.72561,
+        24.94269
       ],
       [
-        -18.59401,
-        27.99891
+        -17.72764,
+        24.94367
       ],
       [
-        -18.59178,
-        27.99884
+        -17.72541,
+        24.9436
       ],
       [
-        -18.59386,
-        27.99799
+        -17.72749,
+        24.94275
       ],
       [
-        -18.59226,
-        27.99963
+        -17.72589,
+        24.94438
       ],
       [
-        -18.59313,
-        27.99746
+        -17.72676,
+        24.94222
       ],
       [
-        -18.59314,
-        27.99981
+        -17.72677,
+        24.94456
       ],
       [
-        -18.59226,
-        27.99764
+        -17.72589,
+        24.94241
       ],
       [
-        -18.59387,
-        27.99927
+        -17.7275,
+        24.94404
       ],
       [
-        -18.59179,
-        27.99843
+        -17.72542,
+        24.9432
+      ]
+    ],
+    "E-11": [
+      [
+        -17.84137,
+        25.92621
+      ],
+      [
+        -17.82586,
+        25.92319
+      ],
+      [
+        -17.81771,
+        25.92413
+      ],
+      [
+        -17.8176,
+        25.92402
+      ],
+      [
+        -17.81764,
+        25.92414
+      ],
+      [
+        -17.81777,
+        25.9241
+      ],
+      [
+        -17.81774,
+        25.92415
+      ],
+      [
+        -17.80569,
+        25.93402
+      ],
+      [
+        -17.79529,
+        25.93413
+      ],
+      [
+        -17.77907,
+        25.93719
+      ],
+      [
+        -17.78234,
+        25.93987
+      ],
+      [
+        -17.78841,
+        25.94305
+      ],
+      [
+        -17.7957,
+        25.95021
+      ],
+      [
+        -17.80111,
+        25.95734
+      ],
+      [
+        -17.80518,
+        25.96164
+      ],
+      [
+        -17.80962,
+        25.96392
+      ],
+      [
+        -17.81096,
+        25.95892
+      ],
+      [
+        -17.81096,
+        25.95892
+      ],
+      [
+        -17.81096,
+        25.95892
+      ],
+      [
+        -17.81119,
+        25.94883
+      ],
+      [
+        -17.80159,
+        25.94929
+      ],
+      [
+        -17.80269,
+        25.95931
+      ],
+      [
+        -17.81213,
+        25.95746
+      ],
+      [
+        -17.80972,
+        25.94769
+      ],
+      [
+        -17.80061,
+        25.95089
+      ],
+      [
+        -17.80428,
+        25.96021
       ]
     ]
   }

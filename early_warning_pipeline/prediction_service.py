@@ -96,39 +96,40 @@ class PredictionService:
         # 1. Environmental Analysis
         ndvi = context.get('ndvi', 0)
         rainfall = context.get('rainfall', 0)
+        habitat_score = int(min(ndvi / 0.7, 1.0) * 100) # 0.7 NDVI is "perfect" lushness
         
         if ndvi > 0.45:
-            reasons.append(f"High-quality foraging habitat (NDVI: {ndvi:.2f}) strongly attracts movement.")
+            reasons.append(f"🌟 Habitat Quality: {habitat_score}/100. Rich foraging grounds strongly attract movement.")
         elif ndvi > 0.25:
-            reasons.append("Moderate vegetation cover detected, suitable for transit or foraging.")
+            reasons.append(f"⚖️ Habitat Quality: {habitat_score}/100. Moderate vegetation cover detected.")
         elif ndvi < 0.1:
-            reasons.append("Sparse vegetation detected; likely a transit corridor or water-seeking route.")
+            reasons.append(f"🏜️ Habitat Quality: {habitat_score}/100. Sparse vegetation; likely a transit corridor.")
             
         if rainfall > 30:
-            reasons.append(f"Recent rainfall ({rainfall:.1f}mm) likely driving movement toward seasonal water pans.")
+            reasons.append(f"💧 Rainfall Score: {int(min(rainfall/100, 1.0)*100)}/100. Recent rain driving movement toward water.")
 
         # 2. Human-Elephant Conflict Markers (HEC)
         village_dist = context.get('village_distance_m', 20000)
         cropland = context.get('cropland_pct', 0)
         
         if cropland > 5:
-            reasons.append(f"Elephant attracted to high-calorie crop resources ({cropland:.1f}% cover) in target cell.")
+            reasons.append(f"🌽 Resource Score: {int(min(cropland/20, 1.0)*100)}/100. High-calorie crop attraction detected.")
         
         if village_dist < 2000:
-            reasons.append(f"CRITICAL: Immediate proximity to human settlement ({village_dist/1000.0:.1f} km). High conflict risk.")
+            reasons.append(f"🚨 Conflict Risk: CRITICAL. settlement proximity is only {village_dist/1000.0:.1f} km.")
         elif village_dist < 8000:
-            reasons.append(f"Elephant is approaching human settlement boundaries ({village_dist/1000.0:.1f} km). Monitoring required.")
+            reasons.append(f"⚠️ Conflict Risk: MODERATE. Elephant is approaching settlement boundaries.")
         
         # 3. Kinematic drivers
         speed = context.get('step_dist_m', 0)
         if speed > 1800:
-            reasons.append(f"High-speed trajectory ({speed/1000.0:.1f} km/h) indicates active migration or flight response.")
+            reasons.append(f"🏹 Velocity: {int(min(speed/3000, 1.0)*100)}/100. Active migration or flight response detected.")
         elif speed < 400:
-            reasons.append("Stationary/Browsing behavior: Low velocity suggests localized feeding or resting.")
+            reasons.append("📍 Activity: 100/100 Stationary. Browsing or resting behavior detected.")
 
         # 4. Model Context
         if prob > 0.4:
-            reasons.append(f"Trajectory confirmed by model with {prob*100:.1f}% confidence.")
+            reasons.append(f"🎯 Prediction Score: {int(prob*100)}/100. Highly confident model trajectory.")
         
         # Ensure we always have something
         if not reasons:
